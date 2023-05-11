@@ -18,11 +18,7 @@ try {
 // Load PHP Auth
 $auth = new \Delight\Auth\Auth($db);
 if ($auth->isLoggedIn()) {
-  // Load Notes and Tasks
-  $notes = new \Nereare\Poo\Notes($db, $auth->getUserId());
-  $tasks = new \Nereare\Poo\Tasks($db, $auth->getUserId());
-  // Load Chat
-  $chat  = new \Nereare\Poo\Chats($db, $auth->getUserId());
+  //
 }
 
 // Load Monolog
@@ -36,11 +32,12 @@ $logger->pushHandler(
   )
 );
 $logger->pushHandler(
-  new \Nereare\Poo\PDOHandler(
+  new \Nereare\Adventure\PDOHandler(
     $db,
     constant("INSTANCE_DB_NAME") . "_log"
   )
 );
+
 /**
  * Set helper function for log registering
  * @param string  $level    The level of message. Either "debug", "notice", "warning", "error", "critical", "alert", "emergency", or "info"
