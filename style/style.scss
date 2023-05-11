@@ -1,0 +1,105 @@
+// Set charset
+@charset "utf-8";
+
+// Bulma variables
+$family-sans-serif : "Montserrat", sans-serif;
+$family-monospace  : "Roboto Mono", monospace;
+$primary           : #4e342e;
+$link              : #f57f17;
+
+// Import bulma
+@import "../node_modules/bulma/bulma.sass";
+@import "../node_modules/bulma-checkradio/dist/css/bulma-checkradio.min.css";
+@import "../node_modules/bulma-switch/dist/css/bulma-switch.min.css";
+@import "../node_modules/@creativebulma/bulma-divider/dist/bulma-divider.min.css";
+
+html, body { text-align: justify; }
+input, select, option, textarea { font-family: $family-monospace; }
+
+// Set navburgers to white
+.navbar-burger { color: $white; }
+// Set short-menu elements to centered
+.navbar-menu { text-align: center; }
+// Set `.modal-card-foot` DIVs as centered
+.modal-card-foot div { margin-left: auto; margin-right: auto; }
+
+.page-404 {
+  display: block;
+  max-width: 256px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.CodeMirror-scroll {
+  font-family: $family-monospace;
+  font-size: 0.75rem;
+}
+
+#notification {
+  width: 20em;
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 100;
+}
+
+// Message styles
+#msg-wrapper {
+  // Bottom-fixed
+  position: fixed;
+  float: left;
+  bottom: 0;
+  // Fullwidth
+  width: 100%;
+  // Mininum Height
+  min-height: 2rem;
+  // Above everything - but notifications
+  z-index: 39;
+
+  // New-Message button & its container
+  #msg-new-container {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    // Stay at the feet of the container
+    position: absolute;
+    bottom: 0;
+  }
+  #msg-new { border-radius: 50%; }
+  // Chat window
+  .chat {
+    font-size: 0.75rem;
+    .card-header * { padding: 0.25rem 0.5rem; }
+    .card-content {
+      padding: 0;
+      overflow: hidden;
+      height: 20rem;
+      .card-scroll {
+        width: 100%;
+        height: 20rem;
+        overflow-y: auto;
+      }
+    }
+    .msg {
+      border-radius: $radius;
+      width: 80%;
+      margin: 0.5rem;
+      padding: 0.5rem;
+      &.from { background-color: findLightColor($link); }
+      &.to {
+        background-color: $grey-lightest;
+        margin-left: auto;
+      }
+    }
+    .card-footer {
+      width: 100%;
+      border: none;
+      overflow: hidden;
+      .field {
+        margin: 0.25rem;
+        width: 100%;
+      }
+    }
+  }
+}

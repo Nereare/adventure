@@ -1,0 +1,29 @@
+{
+  "name": "adventure",
+  "description": "Yet another try at creating adventures programatically",
+  "version": "0.1.0",
+  "maintainers": [
+    {
+      "name": "Igor Padoim",
+      "email": "igorpadoim@gmail.com",
+      "web": "https://nereare.com/"
+    }
+  ],
+  "bugs": {
+    "web": "https://github.com/Nereare/adventure/issues"
+  },
+  "license": "HL3-FULL",
+  "dependencies": {
+    "@creativebulma/bulma-divider": "^1.1.0",
+    "@mdi/font": "^7.2",
+    "bulma": "^0.9",
+    "bulma-checkradio": "^2.1",
+    "bulma-switch": "^2.0",
+    "jquery": "^3.6",
+    "normalize.css": "^8.0",
+    "typeface-merriweather": "^1.1",
+    "typeface-montserrat": "^1.1",
+    "typeface-roboto-mono": "^1.1"
+  },
+  "packageManager": "yarn@3.5.1"
+}

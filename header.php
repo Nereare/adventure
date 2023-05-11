@@ -1,0 +1,201 @@
+<?php
+require "vendor/autoload.php";
+require "php/meta.php";
+session_start();
+
+// Try and reach the configuration file
+if (is_readable("php/config.php")) {
+  // Include configuration file
+  require_once("php/config.php");
+
+  if (constant("PRODUCTION") && is_readable("install/")) {
+    $installed = false;
+  } else {
+    $installed = true;
+  }
+
+  // Set title
+  $title = constant("INSTANCE_TITLE");
+
+  // Try and connect to the database
+  try {
+    $db = new \PDO(
+      "mysql:dbname=" . constant("INSTANCE_DB_NAME") . ";host=localhost;charset=utf8mb4",
+      constant("INSTANCE_DB_USER"),
+      constant("INSTANCE_DB_PASSWORD")
+    );
+    $installed = true;
+  } catch (\Exception $e) { $installed = false; }
+} else {
+  $installed = false;
+  $title = "Adventure";
+}
+
+// Load Auth only if installed
+if (isset($installed) && $installed) {
+  $auth = new \Delight\Auth\Auth($db);
+}
+?>
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#4e342e">
+  <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#4e342e">
+  <meta name="msapplication-TileImage" content="assets/favicon/mstile-144x144.png">
+  <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <title><?php echo $title; ?></title>
+
+  <link rel="stylesheet" href="node_modules/@mdi/font/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="node_modules/typeface-montserrat/index.css">
+  <link rel="stylesheet" href="node_modules/typeface-roboto-mono/index.css">
+  <link rel="stylesheet" href="node_modules/simplemde/dist/simplemde.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="node_modules/simplemde/dist/simplemde.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="node_modules/chart.js/dist/chart.umd.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/common.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <?php
+  if (!$installed) { // If the instance is not installed:
+  ?>
+    <section class="hero is-primary is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns mb-0 is-centered">
+            <div class="column is-6">
+              <div class="box">
+                <div class="has-text-centered">
+                  <figure class="image is-128x128 is-inline-block">
+                    <img src="assets/Icon.svg">
+                  </figure>
+                </div>
+
+                <h2 class="title is-4">
+                  <span class="icon-text has-text-primary">
+                    <span class="icon">
+                      <i class="mdi mdi-alert-circle"></i>
+                    </span>
+                    <span>Opa...</span>
+                  </span>
+                </h2>
+
+                <div class="content">
+                  <p>
+                    Estes não são os androides que você está procurando...
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <?php
+    exit(0);
+  } elseif (!$auth->isLoggedIn()) { // If the user is NOT logged in
+  ?>
+    <section class="hero is-primary is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns mb-0 is-centered">
+            <div class="column is-6">
+              <div class="box">
+                <div class="has-text-centered">
+                  <figure class="image is-128x128 is-inline-block">
+                    <img src="assets/Icon.svg">
+                  </figure>
+                </div>
+
+                <form class="content">
+                  <div class="field">
+                    <p class="control has-icons-left">
+                      <input type="text" class="input" id="login-username" placeholder="Usuário">
+                      <span class="icon is-small is-left">
+                        <i class="mdi mdi-account mdi-24px"></i>
+                      </span>
+                    </p>
+                  </div>
+
+                  <div class="field">
+                    <p class="control has-icons-left">
+                      <input type="password" class="input" id="login-password" placeholder="Senha">
+                      <span class="icon is-small is-left">
+                        <i class="mdi mdi-lock mdi-24px"></i>
+                      </span>
+                    </p>
+                  </div>
+
+                  <div class="field">
+                    <p class="control is-expanded">
+                      <button type="submit" class="button is-primary is-fullwidth" id="login-login">
+                        <span class="icon-text">
+                          <span class="icon">
+                            <i class="mdi mdi-login"></i>
+                          </span>
+                          <span>Entrar</span>
+                        </span>
+                      </button>
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <?php
+    exit(0);
+  } else { // If the user IS logged in
+  ?>
+    <!------------------------------------->
+    <!--              MENU               -->
+    <!------------------------------------->
+    <header class="navbar is-primary">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="<?php echo constant("SITE_PROTOCOL"); ?>://<?php echo constant("SITE_BASEURI"); ?>">
+          <img src="assets/White-Icon.svg">
+        </a>
+
+        <a class="navbar-burger">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <!-- Config -->
+          <a class="navbar-item" href="cp.php">
+            <span class="icon">
+              <i class="mdi mdi-cog"></i>
+            </span>
+            <span>Config</span>
+          </a>
+          <!-- Logout -->
+          <a class="navbar-item" id="logout-logout">
+            <span class="icon">
+              <i class="mdi mdi-logout-variant"></i>
+            </span>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </header>
+  <?php
+  }
