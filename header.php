@@ -63,12 +63,9 @@ if (isset($installed) && $installed) {
   <link rel="stylesheet" href="node_modules/@mdi/font/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="node_modules/typeface-montserrat/index.css">
   <link rel="stylesheet" href="node_modules/typeface-roboto-mono/index.css">
-  <link rel="stylesheet" href="node_modules/simplemde/dist/simplemde.min.css">
   <link rel="stylesheet" href="style/style.css">
 
   <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
-  <script type="text/javascript" src="node_modules/simplemde/dist/simplemde.min.js" charset="utf-8"></script>
-  <script type="text/javascript" src="node_modules/chart.js/dist/chart.umd.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/common.js" charset="utf-8"></script>
 </head>
 

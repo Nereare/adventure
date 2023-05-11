@@ -30,7 +30,6 @@ __metadata:
     bulma-switch: ^2.0
     jquery: ^3.6
     normalize.css: ^8.0
-    typeface-merriweather: ^1.1
     typeface-montserrat: ^1.1
     typeface-roboto-mono: ^1.1
   languageName: unknown
@@ -70,13 +69,6 @@ __metadata:
   version: 8.0.1
   resolution: "normalize.css@npm:8.0.1"
   checksum: 4698cae88ec35e3f3e82f9f9402e6ffb906c27ccd6373cad88e6b3f5634fc7a043cb38702472299e5edb73825cf8b18d5fd9283f58829eddda79ea97453049a2
-  languageName: node
-  linkType: hard
-
-"typeface-merriweather@npm:^1.1":
-  version: 1.1.13
-  resolution: "typeface-merriweather@npm:1.1.13"
-  checksum: 8745dfc55280aceeffd8a7cc127b6538ec544727d4789f231e0f168c6107345463c845efc89b38ff75fac2c01da3b7f5255eb2351229215038ba955f790da19e
   languageName: node
   linkType: hard
 

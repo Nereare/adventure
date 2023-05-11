@@ -7,7 +7,6 @@ $family-monospace  : "Roboto Mono", monospace;
 $primary           : #922610;
 $link              : #e69a28;
 $title-color       : $primary;
-$title-family      : "Merriweather", serif;
 
 // Import bulma
 @import "../node_modules/bulma/bulma.sass";
@@ -17,8 +16,7 @@ $title-family      : "Merriweather", serif;
 
 html, body { text-align: justify; }
 input, select, option, textarea { font-family: $family-monospace; }
-h1 { text-transform: uppercase; }
-h2, h3, h4 { font-variant: small-caps; }
+h1, h2, h3, h4 { font-variant: small-caps; }
 
 // Set navburgers to white
 .navbar-burger { color: $white; }
