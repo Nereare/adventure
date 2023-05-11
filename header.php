@@ -25,7 +25,9 @@ if (is_readable("php/config.php")) {
       constant("INSTANCE_DB_PASSWORD")
     );
     $installed = true;
-  } catch (\Exception $e) { $installed = false; }
+  } catch (\Exception $e) {
+    $installed = false;
+  }
 } else {
   $installed = false;
   $title = "Adventure";
@@ -43,16 +45,18 @@ if (isset($installed) && $installed) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-  <link rel="manifest" href="assets/favicon/site.webmanifest">
-  <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#4e342e">
-  <link rel="shortcut icon" href="assets/favicon/favicon.ico">
-  <meta name="msapplication-TileColor" content="#4e342e">
-  <meta name="msapplication-TileImage" content="assets/favicon/mstile-144x144.png">
-  <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
-  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="194x194" href="favicon/favicon-194x194.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#922610">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#922610">
+  <meta name="msapplication-TileImage" content="favicon/mstile-144x144.png">
+  <meta name="msapplication-config" content="favicon/browserconfig.xml">
+  <meta name="theme-color" content="#922610">
 
   <title><?php echo $title; ?></title>
 
@@ -60,7 +64,7 @@ if (isset($installed) && $installed) {
   <link rel="stylesheet" href="node_modules/typeface-montserrat/index.css">
   <link rel="stylesheet" href="node_modules/typeface-roboto-mono/index.css">
   <link rel="stylesheet" href="node_modules/simplemde/dist/simplemde.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style/style.css">
 
   <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="node_modules/simplemde/dist/simplemde.min.js" charset="utf-8"></script>
@@ -80,7 +84,7 @@ if (isset($installed) && $installed) {
               <div class="box">
                 <div class="has-text-centered">
                   <figure class="image is-128x128 is-inline-block">
-                    <img src="assets/Icon.svg">
+                    <img src="assets/404.png">
                   </figure>
                 </div>
 
@@ -89,7 +93,7 @@ if (isset($installed) && $installed) {
                     <span class="icon">
                       <i class="mdi mdi-alert-circle"></i>
                     </span>
-                    <span>Opa...</span>
+                    <span>Oopsie...</span>
                   </span>
                 </h2>
 
@@ -116,7 +120,7 @@ if (isset($installed) && $installed) {
               <div class="box">
                 <div class="has-text-centered">
                   <figure class="image is-128x128 is-inline-block">
-                    <img src="assets/Icon.svg">
+                    <img src="assets/Icon.png">
                   </figure>
                 </div>
 
