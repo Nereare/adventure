@@ -1,7 +1,7 @@
 # Adventure Generator
 
 [![GitHub package.json version](https://img.shields.io/github/package-json/v/Nereare/adventure)](https://github.com/Nereare/adventure)
-[![License](https://img.shields.io/github/license/Nereare/adventure.svg)](LICENSE.md)
+[![Hippocratic License HL3-FULL](https://img.shields.io/static/v1?label=Hippocratic%20License&message=HL3-FULL&labelColor=5e2751&color=bc8c3d)](https://firstdonoharm.dev/version/3/0/full.html)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE-OF-CONDUCT.md)
 
 Yet another try at creating adventures programatically.
