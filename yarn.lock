@@ -5,10 +5,17 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@creativebulma/bulma-divider@npm:^1.1.0":
+"@creativebulma/bulma-divider@npm:^1.1":
   version: 1.1.0
   resolution: "@creativebulma/bulma-divider@npm:1.1.0"
   checksum: d658a2376374b248ec90fdc3a4221ea7823db28d31e3d613828dbb0abca6635a0fea81415f6e4821e0e62d64064779ebad7550aa985cb4ebc4de55559e3a65e5
+  languageName: node
+  linkType: hard
+
+"@creativebulma/bulma-tagsinput@npm:^1.0":
+  version: 1.0.3
+  resolution: "@creativebulma/bulma-tagsinput@npm:1.0.3"
+  checksum: d70f5720447050a927e42ea5a4c47d319a78a8b98dcbc34a22b91609e2b7ec69186ade2533732b33dc19e6a9e91d7bbfe38d1a9dff1ea5826305ebc0556aaf2f
   languageName: node
   linkType: hard
 
@@ -23,7 +30,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "adventure@workspace:."
   dependencies:
-    "@creativebulma/bulma-divider": ^1.1.0
+    "@creativebulma/bulma-divider": ^1.1
+    "@creativebulma/bulma-tagsinput": ^1.0
     "@mdi/font": ^7.2
     bulma: ^0.9
     bulma-checkradio: ^2.1

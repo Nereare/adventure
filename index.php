@@ -1,19 +1,9 @@
-<?php
-/**
- * Set the current page.
- */
-$page = "home";
-/**
- * Set the current page's script.
- */
-$script = "home";
-require_once "header.php";
-?>
+<?php require_once "header.php"; ?>
 
 <main class="section">
   <div class="container">
     <div class="box">
-      //
+      <?= _("This is a placeholder text."); ?>
     </div>
   </div>
 </main>

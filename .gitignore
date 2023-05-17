@@ -678,3 +678,4 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/osx,node,visualstudiocode,visualstudio,linux,grunt,macos,dropbox,windows,composer,yarn,sass
 
 php/config.php
+*.mo

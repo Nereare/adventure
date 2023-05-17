@@ -12,7 +12,7 @@
           <?php echo constant("APP_YEAR"); ?>
           <?php echo constant("APP_AUTHOR"); ?>
           &bull;
-          Available under the
+          <?= _("Available under the"); ?>
           <a href="<?php echo constant("APP_LICENSE_URI"); ?>">
             <?php echo constant("APP_LICENSE_NAME"); ?>
           </a>

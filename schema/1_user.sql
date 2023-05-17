@@ -57,3 +57,12 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
   PRIMARY KEY (`bucket`),
   KEY `expires_at` (`expires_at`)
 );
+
+CREATE TABLE IF NOT EXISTS `preferences` (
+  `id` INT UNSIGNED NOT NULL,
+  `name_title` VARCHAR(16),
+  `name_first` VARCHAR(64),
+  `name_last` VARCHAR(128),
+  `name_suffix` VARCHAR(16),
+  PRIMARY KEY (`id`)
+);

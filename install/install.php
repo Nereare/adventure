@@ -1,6 +1,6 @@
 <?php
 require "../vendor/autoload.php";
-require "./meta.php";
+require "../php/meta.php";
 session_start();
 
 // Load Monolog
@@ -20,7 +20,6 @@ $logger->pushHandler(
  * @param string  $action   The action being taken (e.g. "create", "edit", "delete", "access")
  */
 function loggy(string $level, string $msg, string $target = "?", string $action = "?", array $context = []): void {
-  global $auth;
   global $logger;
   // Set context
   $context["target"] = $target;
@@ -73,19 +72,27 @@ if (isset($_GET["instance_name"]) &&
     isset($_GET["db_password"]) &&
     isset($_GET["admin_username"]) &&
     isset($_GET["admin_password"]) &&
-    isset($_GET["admin_email"])) {
+    isset($_GET["admin_email"]) &&
+    isset($_GET["admin_name_prefix"]) &&
+    isset($_GET["admin_name_first"]) &&
+    isset($_GET["admin_name_last"]) &&
+    isset($_GET["admin_name_suffix"])) {
   // If we received everything...
   // Get fields
-  $instance_name = $_GET["instance_name"];
-  $instance_production = $_GET["instance_production"];
-  $instance_uri = $_GET["instance_uri"];
-  $instance_protocol = $_GET["instance_protocol"];
-  $db_name = $_GET["db_name"];
-  $db_username = $_GET["db_username"];
-  $db_password = $_GET["db_password"];
-  $admin_username = $_GET["admin_username"];
-  $admin_password = $_GET["admin_password"];
-  $admin_email = $_GET["admin_email"];
+  $instance_name        = $_GET["instance_name"];
+  $instance_production  = $_GET["instance_production"];
+  $instance_uri         = $_GET["instance_uri"];
+  $instance_protocol    = $_GET["instance_protocol"];
+  $db_name              = $_GET["db_name"];
+  $db_username          = $_GET["db_username"];
+  $db_password          = $_GET["db_password"];
+  $admin_username       = $_GET["admin_username"];
+  $admin_password       = $_GET["admin_password"];
+  $admin_email          = $_GET["admin_email"];
+  $admin_name_prefix    = $_GET["admin_name_prefix"];
+  $admin_name_first     = $_GET["admin_name_first"];
+  $admin_name_last      = $_GET["admin_name_last"];
+  $admin_name_suffix    = $_GET["admin_name_suffix"];
   loggy("debug", "Fields retrieved", "installer", "field check");
 
   // Try and connect to database
@@ -104,17 +111,18 @@ if (isset($_GET["instance_name"]) &&
   loggy("debug", "Connected to database", "installer", "database connection");
 
   // Database creation
-  $schemas = [
-    "1_user.sql",
-    "2_appointment.sql",
-    "3_notes.sql",
-    "4_messages.sql"
-  ];
-  foreach ($schemas as $i => $v) {
+  $schemas = array_filter(scandir("../schema"), function ($elem) {
+    return preg_match(
+      "/^[1-9][0-9A-Za-z_]*\.sql$/",
+      $elem
+    ) ? $elem : false;
+  });
+  foreach ($schemas as $v) {
     $contents = file_get_contents("../schema/{$v}");
     $contents = rtrim($contents, ";" . PHP_EOL);
-    $tables = explode(";" . PHP_EOL . PHP_EOL, $contents);
-    foreach ($tables as $k => $t) {
+    $tables = explode(";", $contents);
+    foreach ($tables as $t) {
+      $t = trim($t);
       try { $result = $db->exec($t); }
       catch (\Exception $e) {
         loggy("error", "Database threw an error", "installer","database population", ["index" => $k, "query" => $t, "db_error" => $db->errorInfo()]);
@@ -137,17 +145,24 @@ if (isset($_GET["instance_name"]) &&
     $uid = $auth->registerWithUniqueUsername($admin_email, $admin_password, $admin_username);
     // Add SUPER_ADMIN role
     $auth->admin()->addRoleForUserById($uid, \Delight\Auth\Role::SUPER_ADMIN);
-    // Create notes entry
-    $stmt = $db->prepare("INSERT INTO `notes` (`owner`, `body`) VALUES (:id, '')");
-    $stmt->execute(array("id" => $uid));
   } catch (\Exception $e) {
     loggy("error", "Auth threw an error creating admin user", "installer", "admin creation");
     die("428");
   }
   loggy("debug", "Created admin user", "installer", "admin creation");
 
+  // Create preferences object
+  $prefs = new \Nereare\Adventure\Preferences(
+    $db,
+    $uid,
+    $admin_name_prefix,
+    $admin_name_first,
+    $admin_name_last,
+    $admin_name_suffix
+  );
+
   // Create `config.php`
-  file_put_contents("./config.php", "<?php
+  file_put_contents("../php/config.php", "<?php
 // Site instance data
 define(\"INSTANCE_TITLE\",        \"{$instance_name}\");
 define(\"PRODUCTION\",            {$instance_production});

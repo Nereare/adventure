@@ -1,0 +1,4 @@
+404.php
+footer.php
+header.php
+index.php

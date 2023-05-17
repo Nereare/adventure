@@ -3,6 +3,12 @@ require "vendor/autoload.php";
 require "php/meta.php";
 session_start();
 
+// Setup gettext
+// FIXME: This method does not work.
+setlocale(LC_ALL, "pt_BR");
+bindtextdomain("messages", "locale");
+textdomain("messages");
+
 // Try and reach the configuration file
 if (is_readable("php/config.php")) {
   // Include configuration file
@@ -61,11 +67,13 @@ if (isset($installed) && $installed) {
   <title><?php echo $title; ?></title>
 
   <link rel="stylesheet" href="node_modules/@mdi/font/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="node_modules/@creativebulma/bulma-tagsinput/dist/css/bulma-tagsinput.min.css">
   <link rel="stylesheet" href="node_modules/typeface-montserrat/index.css">
   <link rel="stylesheet" href="node_modules/typeface-roboto-mono/index.css">
   <link rel="stylesheet" href="style/style.css">
 
   <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="node_modules/@creativebulma/bulma-tagsinput/dist/js/bulma-tagsinput.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/common.js" charset="utf-8"></script>
 </head>
 
@@ -90,13 +98,13 @@ if (isset($installed) && $installed) {
                     <span class="icon">
                       <i class="mdi mdi-alert-circle"></i>
                     </span>
-                    <span>Oopsie...</span>
+                    <span><?= _("Oopsie..."); ?></span>
                   </span>
                 </h2>
 
                 <div class="content">
                   <p>
-                    Estes não são os androides que você está procurando...
+                    <?= _("The site doesn't seem to be properly installed. Contact the domain admnistrator for help with this issue."); ?>
                   </p>
                 </div>
               </div>
@@ -121,10 +129,10 @@ if (isset($installed) && $installed) {
                   </figure>
                 </div>
 
-                <form class="content">
+                <form class="content" id="login">
                   <div class="field">
                     <p class="control has-icons-left">
-                      <input type="text" class="input" id="login-username" placeholder="Usuário">
+                      <input type="text" class="input" id="login-username" placeholder="<?= _("Username"); ?>">
                       <span class="icon is-small is-left">
                         <i class="mdi mdi-account mdi-24px"></i>
                       </span>
@@ -133,11 +141,18 @@ if (isset($installed) && $installed) {
 
                   <div class="field">
                     <p class="control has-icons-left">
-                      <input type="password" class="input" id="login-password" placeholder="Senha">
+                      <input type="password" class="input" id="login-password" placeholder="<?= _("Password"); ?>">
                       <span class="icon is-small is-left">
                         <i class="mdi mdi-lock mdi-24px"></i>
                       </span>
                     </p>
+                  </div>
+
+                  <div class="field">
+                    <div class="control">
+                      <input type="checkbox" class="is-checkradio" id="login-persistent" checked>
+                      <label for="login-persistent"><?= _("Remember Me?"); ?></label>
+                    </div>
                   </div>
 
                   <div class="field">
@@ -147,7 +162,7 @@ if (isset($installed) && $installed) {
                           <span class="icon">
                             <i class="mdi mdi-login"></i>
                           </span>
-                          <span>Entrar</span>
+                          <span><?= _("Login"); ?></span>
                         </span>
                       </button>
                     </p>
@@ -169,7 +184,7 @@ if (isset($installed) && $installed) {
     <header class="navbar is-primary">
       <div class="navbar-brand">
         <a class="navbar-item" href="<?php echo constant("SITE_PROTOCOL"); ?>://<?php echo constant("SITE_BASEURI"); ?>">
-          <img src="assets/White-Icon.svg">
+          <img src="assets/Icon White.png">
         </a>
 
         <a class="navbar-burger">
@@ -186,14 +201,14 @@ if (isset($installed) && $installed) {
             <span class="icon">
               <i class="mdi mdi-cog"></i>
             </span>
-            <span>Config</span>
+            <span><?= _("Config"); ?></span>
           </a>
           <!-- Logout -->
           <a class="navbar-item" id="logout-logout">
             <span class="icon">
               <i class="mdi mdi-logout-variant"></i>
             </span>
-            <span>Logout</span>
+            <span><?= _("Logout"); ?></span>
           </a>
         </div>
       </div>
