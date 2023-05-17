@@ -204,7 +204,7 @@ if (isset($installed) && $installed) {
             <span><?= _("Config"); ?></span>
           </a>
           <!-- Logout -->
-          <a class="navbar-item" id="logout-logout">
+          <a class="navbar-item" id="logout">
             <span class="icon">
               <i class="mdi mdi-logout-variant"></i>
             </span>

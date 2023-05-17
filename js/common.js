@@ -41,8 +41,7 @@ $(function() {
           remember : remember
         }
       })
-        .done(function(r) { reply = r; })
-        .fail(function(r) {
+        .fail(function() {
           resetNotification( $("#notification") );
           $("#notification")
             .addClass("is-danger")
@@ -53,7 +52,7 @@ $(function() {
             .removeClass("is-loading")
             .prop("disabled", false);
         })
-        .always(function(r) {
+        .done(function(r) {
           if ( r == "0" ) {
             resetNotification( $("#notification") );
             $("#notification")
@@ -88,8 +87,8 @@ $(function() {
   $("#logout").on("click", function() {
     $.ajax({
       method: "GET",
-      url: "do/logout.php"
-    }).always(function(r) { location.reload(); });
+      url: "php/logout.php"
+    }).always(function() { location.reload(); });
   });
 
 });
