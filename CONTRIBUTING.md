@@ -17,6 +17,7 @@ Before sending your pull requests, make sure you followed this list.
    represent in the files below:
     - Any example files
     - [Package JSON file](package.json)
+    - [PHP Metadata file](php/meta.php)
     - **Note:** the versioning scheme we use is [SemVer](http://semver.org/)!
 4. You may merge the Pull Request in once you have the approval of the project
    owner.
