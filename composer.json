@@ -2,7 +2,8 @@
   "type": "project",
   "require": {
     "delight-im/auth": "^8.3",
-    "monolog/monolog": "^3.2"
+    "monolog/monolog": "^3.2",
+    "erusev/parsedown": "^1.7"
   },
   "autoload": {
     "psr-4": {
