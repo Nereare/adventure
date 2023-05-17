@@ -3,12 +3,6 @@ require "vendor/autoload.php";
 require "php/meta.php";
 session_start();
 
-// Setup gettext
-// FIXME: This method does not work.
-setlocale(LC_ALL, "pt_BR");
-bindtextdomain("messages", "locale");
-textdomain("messages");
-
 // Try and reach the configuration file
 if (is_readable("php/config.php")) {
   // Include configuration file
@@ -98,13 +92,13 @@ if (isset($installed) && $installed) {
                     <span class="icon">
                       <i class="mdi mdi-alert-circle"></i>
                     </span>
-                    <span><?= _("Oopsie..."); ?></span>
+                    <span>Oopsie...</span>
                   </span>
                 </h2>
 
                 <div class="content">
                   <p>
-                    <?= _("The site doesn't seem to be properly installed. Contact the domain admnistrator for help with this issue."); ?>
+                    The site doesn't seem to be properly installed. Contact the domain admnistrator for help with this issue.
                   </p>
                 </div>
               </div>
@@ -132,7 +126,7 @@ if (isset($installed) && $installed) {
                 <form class="content" id="login">
                   <div class="field">
                     <p class="control has-icons-left">
-                      <input type="text" class="input" id="login-username" placeholder="<?= _("Username"); ?>">
+                      <input type="text" class="input" id="login-username" placeholder="Username">
                       <span class="icon is-small is-left">
                         <i class="mdi mdi-account mdi-24px"></i>
                       </span>
@@ -141,7 +135,7 @@ if (isset($installed) && $installed) {
 
                   <div class="field">
                     <p class="control has-icons-left">
-                      <input type="password" class="input" id="login-password" placeholder="<?= _("Password"); ?>">
+                      <input type="password" class="input" id="login-password" placeholder="Password">
                       <span class="icon is-small is-left">
                         <i class="mdi mdi-lock mdi-24px"></i>
                       </span>
@@ -151,7 +145,7 @@ if (isset($installed) && $installed) {
                   <div class="field">
                     <div class="control">
                       <input type="checkbox" class="is-checkradio" id="login-persistent" checked>
-                      <label for="login-persistent"><?= _("Remember Me?"); ?></label>
+                      <label for="login-persistent">Remember Me?</label>
                     </div>
                   </div>
 
@@ -162,7 +156,7 @@ if (isset($installed) && $installed) {
                           <span class="icon">
                             <i class="mdi mdi-login"></i>
                           </span>
-                          <span><?= _("Login"); ?></span>
+                          <span>Login</span>
                         </span>
                       </button>
                     </p>
@@ -201,14 +195,14 @@ if (isset($installed) && $installed) {
             <span class="icon">
               <i class="mdi mdi-cog"></i>
             </span>
-            <span><?= _("Config"); ?></span>
+            <span>Config</span>
           </a>
           <!-- Logout -->
           <a class="navbar-item" id="logout">
             <span class="icon">
               <i class="mdi mdi-logout-variant"></i>
             </span>
-            <span><?= _("Logout"); ?></span>
+            <span>Logout</span>
           </a>
         </div>
       </div>
