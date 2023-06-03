@@ -7,7 +7,9 @@ class Challenge {
   private int                     $dc_p5;
   private int                     $dc_p90;
   private string                  $skill;
-  private string                  $desc;
+  private string                  $desc_base;
+  private string                  $desc_postsuccess;
+  private string                  $desc_postfailure;
   private string                  $success_msg;
   private \Nereare\Adventure\Loot $success_loot;
   private string                  $fail_msg;
@@ -25,7 +27,9 @@ class Challenge {
   public function __construct(
     int $dc,
     string $skill,
-    string $desc,
+    string $desc_base,
+    string $desc_postsuccess,
+    string $desc_postfailure,
     string $success_msg,
     string $fail_msg,
     bool $retry = false,
@@ -40,7 +44,9 @@ class Challenge {
   ) {
     $this->dc = $dc;
     $this->skill = $skill;
-    $this->desc = $desc;
+    $this->desc_base = $desc_base;
+    $this->desc_postsuccess = $desc_postsuccess;
+    $this->desc_postfailure = $desc_postfailure;
     $this->success_msg = $success_msg;
     $this->fail_msg = $fail_msg;
     $this->retry = $retry;
@@ -114,10 +120,13 @@ class Challenge {
    * @return string   The description, it should be parsed to process markdown notation.
    */
   public function get_desc(): string {
-    // TODO: Change description to be the text shown.
-    // This text will have a base (before tryouts of the Challenge), a post-success, a post-failure, and a retriable text.
-    // Each will be shown according the the Challenge's state (`won`, `failed`, and `retry`).
-    return $this->desc;
+    if (!$this->won && !$this->failed) {
+      return $this->desc_base;
+    } elseif ($this->won) {
+      return $this->desc_postsuccess;
+    } else {
+      return $this->desc_postfailure;
+    }
   }
 
   /**
