@@ -27,6 +27,8 @@
         15,
         "Arcana",
         "",
+        "",
+        "",
         "Success",
         "Fail",
         false,
