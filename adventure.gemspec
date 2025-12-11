@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Gem::Specification.new do |spec|
-  spec.name          = 'adventure'
+  spec.name          = 'adventure_theme'
   spec.version       = '0.1.0'
   spec.author        = 'Igor Padoim'
   spec.email         = 'igorpadoim@gmail.com'
