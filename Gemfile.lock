@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adventure (0.1.0)
+    adventure_theme (0.1.0)
       jekyll (~> 4.4)
       jekyll-feed (~> 0.17)
       jekyll-redirect-from (~> 0.16)
@@ -234,7 +234,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  adventure!
+  adventure_theme!
   html-proofer (~> 5.1)
   nokogiri (~> 1.18)
   webrick (~> 1.9)
