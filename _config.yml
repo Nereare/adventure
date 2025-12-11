@@ -1,0 +1,26 @@
+title       : Adventure Theme
+email       : igorpadoim@gmail.com
+description : This is a theme for Jekyll intended to be used as a template for interactive RPG solo adventures.
+license     : CC-BY-NC-ND-4.0
+
+meta:
+  name: adventure_theme
+  version: "0.1.0"
+
+plugins:
+  - jekyll-feed
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jemoji
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - docs/
+  - vendor/
+  - CHANGELOG.md
+  - CODE-OF-CONDUCT.md
+  - CONTRIBUTING.md
+  - LICENSE.md
+  - README.md
