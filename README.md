@@ -4,6 +4,9 @@
 [![GitHub License](https://img.shields.io/github/license/Nereare/adventure?logo=unlicense&logoColor=ffffff&label=License)](LICENSE.md)
 [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-3.0-5e0d73?logo=contributorcovenant&logoColor=ffffff)](CODE-OF-CONDUCT.md)
 
+[![Libraries.io dependency status](https://img.shields.io/librariesio/github/Nereare/adventure?logo=librariesdotio&logoColor=f58235&label=Libraries.io&color=f58235)](https://libraries.io/github/Nereare/adventure)
+[![RubyGem downloads](https://img.shields.io/gem/dt/adventure_theme?logo=rubygems&logoColor=e9573f&label=RubyGems%20Downloads&color=e9573f)](https://rubygems.org/gems/adventure_theme)
+
 Trully, by now, I was to know a fourth iteration of this try-at-a-project is somewhat bound to fail... But here I am again...
 
 This is a theme for [Jekyll](https://jekyllrb.com/) intended to be used as a template for interactive RPG solo adventures.
