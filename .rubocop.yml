@@ -1,0 +1,31 @@
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+plugins:
+  - rubocop-rake
+  - rubocop-rspec
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+Metrics/BlockLength:
+  Max: 50
+Metrics/ClassLength:
+  Max: 200
+Metrics/PerceivedComplexity:
+  Max: 15
+Metrics/MethodLength:
+  Max: 50
+Metrics/AbcSize:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Max: 10
+Layout/LineLength:
+  Enabled: false
+Layout/EndOfLine:
+  EnforcedStyle: lf
+Lint/Void:
+  Enabled: false
