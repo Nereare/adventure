@@ -22,4 +22,4 @@ main_page: README.md
 markup: rdoc
 output_decoration: true
 tab_width: 2
-title: Ferramentas PS Iamspe
+title: Ruby Adventure Framework
