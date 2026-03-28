@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
     'Rakefile'
   ]
   spec.bindir        = 'bin'
+  spec.executables   = 'adventure'
   spec.require_paths = %w[lib]
 
   spec.add_dependency 'tty-config', '~> 0.6.0'

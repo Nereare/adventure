@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'adventure'
+
+# Try and clear CLI screen
+system('clear') || system('cls')
+# Iniciar o comando apropriado
+cmd = Adventure::Starter.new
+cmd.parse(ARGV)
+cmd.run
