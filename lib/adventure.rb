@@ -4,6 +4,7 @@ require 'tty-exit'
 require 'tty-option'
 
 require_relative 'adventure/meta'
+# require_relative 'adventure/loop'
 
 # Gem's main module
 module Adventure
@@ -61,6 +62,8 @@ module Adventure
         when 'license' then puts Adventure::LICENSE
         when 'version' then puts Adventure::VERSION
         else
+          exit_with(:not_found, 'Given game file doesn\'t exist') unless gamefile_exists?(p)
+          exit_with(:invalid_argument, 'Given game file isn\'t valid') unless gamefile_valid?(p)
           # TODO: Start main loop here
           puts p.to_s
         end
@@ -76,6 +79,16 @@ module Adventure
       p = 'license' if params[:license]
       p = 'help' if params[:help]
       p
+    end
+
+    # Checks if the gamefile exists
+    def gamefile_exists?(file)
+      # TODO: check if exists
+    end
+
+    # Check if the gamefile is valid YAML
+    def gamefile_valid?(file)
+      # TODO: check if valid YAML - how? Research it!
     end
   end
 end
