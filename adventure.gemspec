@@ -32,11 +32,9 @@ Gem::Specification.new do |spec|
   spec.executables   = 'adventure'
   spec.require_paths = %w[lib]
 
-  spec.add_dependency 'tty-config', '~> 0.6.0'
   spec.add_dependency 'tty-exit', '~> 0.1.0'
   spec.add_dependency 'tty-option', '~> 0.3.0'
   spec.add_dependency 'tty-prompt', '~> 0.23'
-  spec.add_dependency 'tty-table', '~> 0.12.0'
 
   spec.add_development_dependency 'rake', '~> 13.3'
   spec.add_development_dependency 'rdoc', '~> 6.15'
