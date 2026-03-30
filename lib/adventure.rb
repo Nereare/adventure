@@ -14,10 +14,15 @@ module Adventure
     include TTY::Exit
     include TTY::Option
 
+    # List of all entity classes
+    ADVENTURE_CLASSES = [].freeze
+
     # The one argument you really need: the filename of
     # the game
-    argument :gamefile do
-      name   'gamefile'
+    option :gamefile do
+      short  '-g'
+      long   '--game'
+      long   '--gamefile'
       arity  1
       desc   'Name of the gamefile'
       optional
@@ -46,7 +51,7 @@ module Adventure
 
     # Set help text
     usage do
-      header "#{Adventure::DESCRIPTION}"
+      header Adventure::DESCRIPTION
       no_command
       footer "Available under the #{Adventure::LICENSE}."
     end
@@ -62,10 +67,10 @@ module Adventure
         when 'license' then puts Adventure::LICENSE
         when 'version' then puts Adventure::VERSION
         else
-          exit_with(:not_found, 'Given game file doesn\'t exist') unless gamefile_exists?(p)
+          exit_with(:not_found, 'Given game file doesn\'t exist') unless File.file?(p)
           exit_with(:invalid_argument, 'Given game file isn\'t valid') unless gamefile_valid?(p)
           # TODO: Start main loop here
-          puts p.to_s
+          puts p
         end
       end
     end
@@ -78,17 +83,17 @@ module Adventure
       p = 'version' if params[:version]
       p = 'license' if params[:license]
       p = 'help' if params[:help]
-      p
-    end
 
-    # Checks if the gamefile exists
-    def gamefile_exists?(file)
-      # TODO: check if exists
+      p
     end
 
     # Check if the gamefile is valid YAML
     def gamefile_valid?(file)
-      # TODO: check if valid YAML - how? Research it!
+      game = YAML.safe_load_file(file, permitted_classes: ADVENTURE_CLASSES)
+      return false unless game.key?('current_room')
+      return false unless game.key?('level')
+
+      true
     end
   end
 end
