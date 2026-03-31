@@ -55,7 +55,7 @@ module Adventure
       footer "Available under the #{Adventure::LICENSE}."
     end
 
-    # Run
+    # Begin CLI checks and calls the adequate methods
     def run
       if params.errors.any?
         exit_with(:usage_error, params.errors.summary)
@@ -76,7 +76,7 @@ module Adventure
 
     private
 
-    # Compile TTY::Option parameters into a single term
+    # Compile TTY::Option parameters into a single term for action checking
     def compiled_params
       p = params[:gamefile]
       p = 'version' if params[:version]
@@ -86,7 +86,7 @@ module Adventure
       p
     end
 
-    # Check if the gamefile is valid YAML
+    # Check if the gamefile has minimal contents expected
     def gamefile_valid?(file)
       game = YAML.safe_load_file(file, permitted_classes: ADVENTURE_CLASSES)
       return false unless game.key?('current_room')
