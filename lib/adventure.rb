@@ -8,7 +8,7 @@ require_relative 'adventure/meta'
 
 # Gem's main module
 module Adventure
-  # Game starter
+  # CLI starter
   class Starter
     include Adventure
     include TTY::Exit
