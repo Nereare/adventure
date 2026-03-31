@@ -28,21 +28,21 @@ module Adventure
     end
 
     # Version flag
-    option :version do
+    flag :version do
       short  '-v'
       long   '--version'
       desc   'Show current version of the interpreter'
     end
 
     # License flag
-    option :license do
+    flag :license do
       short  '-l'
       long   '--license'
       desc   'Show license of the interpreter'
     end
 
     # Help flag
-    option :help do
+    flag :help do
       short  '-h'
       long   '--help'
       desc   'Show this help text'
