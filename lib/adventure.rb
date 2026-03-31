@@ -21,8 +21,7 @@ module Adventure
     # the game
     option :gamefile do
       short  '-g'
-      long   '--game'
-      long   '--gamefile'
+      long   '--game=string'
       arity  1
       desc   'Name of the gamefile'
       optional
