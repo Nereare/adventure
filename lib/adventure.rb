@@ -65,11 +65,13 @@ module Adventure
         when 'help' then puts help
         when 'license' then puts Adventure::LICENSE
         when 'version' then puts Adventure::VERSION
-        else
-          exit_with(:not_found, 'Given game file doesn\'t exist') unless File.file?(p)
-          exit_with(:invalid_argument, 'Given game file isn\'t valid') unless gamefile_valid?(p)
+        when 'gamefile'
+          file = params[:gamefile]
+          exit_with(:not_found, 'Given game file doesn\'t exist') unless File.file?(file)
+          exit_with(:invalid_argument, 'Given game file isn\'t valid') unless gamefile_valid?(file)
           # TODO: Start main loop here
           puts p
+        else then exit_with(:invalid_argument, 'Unexpected arguments')
         end
       end
     end
@@ -78,10 +80,11 @@ module Adventure
 
     # Compile TTY::Option parameters into a single term for action checking
     def compiled_params
-      p = params[:gamefile]
+      p = nil
       p = 'version' if params[:version]
       p = 'license' if params[:license]
       p = 'help' if params[:help]
+      p = 'gamefile' unless params[:gamefile].nil? || params[:gamefile].empty?
 
       p
     end
