@@ -71,7 +71,8 @@ module Adventure
           exit_with(:invalid_argument, 'Given game file isn\'t valid') unless gamefile_valid?(file)
           # TODO: Start main loop here
           puts p
-        else then exit_with(:invalid_argument, 'Unexpected arguments')
+        else
+          exit_with(:invalid_argument, 'Unexpected arguments')
         end
       end
     end
