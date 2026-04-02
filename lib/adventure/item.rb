@@ -193,10 +193,10 @@ module Adventure
     # @option   options  [String]          :source          Item's source and page.
     # @option   options  [Integer]         :ac              Item's AC bonus.
     # @option   options  [Boolean]         :max_dex_bonus   If this item is an armor, the maximum Dexterity bonus applicable to the AC.
-    # @option   options  [String]          :dmg_notation    The damage notation in the format XdY+Z.
-    # @option   options  [Integer]         :dmg_die_count   The X in the notation XdY+Z, for damage.
-    # @option   options  [Integer]         :dmg_die_type    The Y in the notation XdY+Z, for damage.
-    # @option   options  [Integer]         :dmg_mod         The Z in the notation XdY+Z, for damage.
+    # @option   options  [String]          :dmg_notation    The damage notation in the format `XdY+Z`.
+    # @option   options  [Integer]         :dmg_die_count   The X in the notation `XdY+Z`, for damage.
+    # @option   options  [Integer]         :dmg_die_type    The Y in the notation `XdY+Z`, for damage.
+    # @option   options  [Integer]         :dmg_mod         The Z in the notation `XdY+Z`, for damage.
     # @option   options  [DamageType]      :dmg_type        Item's type of damage.
     # @option   options  [Boolean]         :magic           Whether or not the item is of magical nature.
     # @option   options  [Boolean, String] :attunement      Whether the item requires attunement or not. If a string, it will be prepended by *"Requires attunement "*.
@@ -312,7 +312,7 @@ module Adventure
 
     # Parse damage notation to actual damage data.
     #
-    # @param  notation  [String]  A notation in the format XdY+Z.
+    # @param  notation  [String]  A notation in the format `XdY+Z`.
     def parse_damage_notation(notation)
       if /\d+d\d+([+-]\d+)?/.match?(notation)
         dmg = notation.scan(/(\d+)d(\d+)([+-]\d+)?/)[0]
