@@ -91,6 +91,8 @@ module Adventure
     end
 
     # Check if the gamefile has minimal contents expected.
+    #
+    # @param  file  [String]  The file name given through CLI.
     def gamefile_valid?(file)
       game = YAML.safe_load_file(file, permitted_classes: ADVENTURE_CLASSES)
       return false unless game.key?('current_room')
