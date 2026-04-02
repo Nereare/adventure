@@ -1,6 +1,7 @@
 --title "Ruby Adventure Framework"
 --markup markdown
 --plugin rspec
+--private
 --exclude .github/
 --exclude bin/
 --exclude spec/
