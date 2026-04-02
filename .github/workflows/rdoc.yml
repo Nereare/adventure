@@ -26,10 +26,10 @@ jobs:
         ruby-version: '3.2'
 
     - name: Install RDoc
-      run: gem install rdoc
+      run: gem install yard
 
     - name: Build Documentation
-      run: rdoc --all
+      run: yard
 
     - name: Setup Pages
       uses: actions/configure-pages@v5
