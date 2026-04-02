@@ -6,19 +6,19 @@ require 'tty-option'
 require_relative 'adventure/meta'
 # require_relative 'adventure/loop'
 
-# Gem's main module
+# Gem's main module.
 module Adventure
-  # CLI starter
+  # CLI starter.
   class Starter
     include Adventure
     include TTY::Exit
     include TTY::Option
 
-    # List of all entity classes
+    # List of all entity classes.
     ADVENTURE_CLASSES = [].freeze
 
     # The one argument you really need: the filename of
-    # the game
+    # the game.
     option :gamefile do
       short  '-g'
       long   '--game=string'
@@ -27,35 +27,35 @@ module Adventure
       optional
     end
 
-    # Version flag
+    # Version flag.
     flag :version do
       short  '-v'
       long   '--version'
       desc   'Show current version of the interpreter'
     end
 
-    # License flag
+    # License flag.
     flag :license do
       short  '-l'
       long   '--license'
       desc   'Show license of the interpreter'
     end
 
-    # Help flag
+    # Help flag.
     flag :help do
       short  '-h'
       long   '--help'
       desc   'Show this help text'
     end
 
-    # Set help text
+    # Set help text.
     usage do
       header Adventure::DESCRIPTION
       no_command
       footer "Available under the #{Adventure::LICENSE}."
     end
 
-    # Begin CLI checks and calls the adequate methods
+    # Begin CLI checks and calls the adequate methods.
     def run
       if params.errors.any?
         exit_with(:usage_error, params.errors.summary)
@@ -79,7 +79,7 @@ module Adventure
 
     private
 
-    # Compile TTY::Option parameters into a single term for action checking
+    # Compile TTY::Option parameters into a single term for action checking.
     def compiled_params
       p = nil
       p = 'version' if params[:version]
@@ -90,7 +90,7 @@ module Adventure
       p
     end
 
-    # Check if the gamefile has minimal contents expected
+    # Check if the gamefile has minimal contents expected.
     def gamefile_valid?(file)
       game = YAML.safe_load_file(file, permitted_classes: ADVENTURE_CLASSES)
       return false unless game.key?('current_room')
