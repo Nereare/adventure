@@ -181,7 +181,7 @@ module Adventure
       SPECIAL        = 'Special'
     end
 
-    # Create new instance of Item.
+    # Create a new instance of Item.
     #
     # @param    name         [String]         Item's name.
     # @param    description  [String]         Item's full description, in GFM.
