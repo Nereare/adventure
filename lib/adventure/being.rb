@@ -17,95 +17,97 @@ module Adventure
 
     # Being's name.
     attr_reader :name
-    # Being's source text, when applicable
+    # Being's source text, when applicable.
     attr_reader :source
-    # Being's alignment
+    # Being's alignment.
     attr_reader :align
-    # Being's Challenge Rating
+    # Being's Challenge Rating.
     attr_reader :cr
-    # Being's Proficiency bonus
+    # Being's Proficiency bonus.
     attr_reader :proficiency
-    # Being's Hash of levels by, when applicable, class, or Integer of total level
+    # Being's Hash of levels by, when applicable, class, or Integer of total level.
     attr_reader :levels
-    # Being's size
+    # Being's size.
     attr_reader :size
-    # Being's type
+    # Being's type.
     attr_reader :type
-    # Whether or not this is a swarm of beings
+    # Whether or not this is a swarm of beings.
     attr_reader :swarm
-    # Being's Hash of speeds, with five elements representing walk, burrow, climb, fly, and swim speeds -- the ones that don't apply set to `nil`
+    # Being's Hash of speeds, with five elements representing walk, burrow, climb, fly, and swim speeds -- the ones that don't apply set to `nil`.
     attr_reader :speed
-    # Being's Array of senses, empty by default
+    # Being's Array of senses, empty by default.
     attr_reader :senses
-    # Being's Array of known languages
+    # Being's Array of known languages.
     attr_reader :languages
-    # Being's Strength score
+    # Being's Strength score.
     attr_reader :ability_str
-    # Being's Dexterity score
+    # Being's Dexterity score.
     attr_reader :ability_dex
-    # Being's Constitution score
+    # Being's Constitution score.
     attr_reader :ability_con
-    # Being's Intelligence score
+    # Being's Intelligence score.
     attr_reader :ability_int
-    # Being's Wisdom score
+    # Being's Wisdom score.
     attr_reader :ability_wis
-    # Being's Charisma score
+    # Being's Charisma score.
     attr_reader :ability_cha
     # Being's Passive Perception score.
     attr_reader :passive_perception
-    # Being's Armor Class
+    # Being's Armor Class.
     attr_reader :ac
-    # Being's AC description, if any
+    # Being's AC description, if any.
     attr_reader :ac_desc
-    # Being's total/maximum Hit Points
+    # Being's total/maximum Hit Points.
     attr_reader :hp
-    # Being's HP dice formula
+    # Being's current HP, initialized as the same as maximum HP.
+    attr_reader :hp
+    # Being's HP dice formula.
     attr_reader :hp_formula
-    # Being's Array of Damage Vulnerabilities, if any -- empty by default
+    # Being's Array of Damage Vulnerabilities, if any -- empty by default.
     attr_reader :dmg_vulnerabilities
-    # Being's Array of Damage Resistances, if any -- empty by default
+    # Being's Array of Damage Resistances, if any -- empty by default.
     attr_reader :dmg_resistances
-    # Being's Array of Damage Immunities, if any -- empty by default
+    # Being's Array of Damage Immunities, if any -- empty by default.
     attr_reader :dmg_immunities
-    # Being's Array of Condition Immunities, if any -- empty by default
+    # Being's Array of Condition Immunities, if any -- empty by default.
     attr_reader :condition_immunities
-    # Being's Spellcasting block header -- `nil` if not applicable
+    # Being's Spellcasting block header -- `nil` if not applicable.
     attr_reader :spell_header
-    # Being's Spellcasting block footer -- `nil` if not applicable
+    # Being's Spellcasting block footer -- `nil` if not applicable.
     attr_reader :spell_footer
-    # Being's Spellcasting array of spells -- empty by default
+    # Being's Spellcasting array of spells -- empty by default.
     attr_reader :spell_list
-    # Being's array of traits
+    # Being's array of traits.
     attr_reader :traits
-    # Being's Actions' header
+    # Being's Actions' header.
     attr_reader :actions_header
-    # Being's Array of Actions
+    # Being's Array of Actions.
     attr_reader :actions_list
-    # Being's Bonus Actions' header
+    # Being's Bonus Actions' header.
     attr_reader :bonus_actions_header
-    # Being's Array of Bonus Actions
+    # Being's Array of Bonus Actions.
     attr_reader :bonus_actions_list
-    # Being's Reactions' header
+    # Being's Reactions' header.
     attr_reader :reactions_header
-    # Being's Array of Reactions
+    # Being's Array of Reactions.
     attr_reader :reactions_list
-    # Being's Legendary Actions' header
+    # Being's Legendary Actions' header.
     attr_reader :legendary_actions_header
-    # Being's number of Legendary Actions, as Integer
+    # Being's number of Legendary Actions, as Integer.
     attr_reader :legendary_actions_count
-    # Being's Array of Legendary Actions
+    # Being's Array of Legendary Actions.
     attr_reader :legendary_actions_list
-    # Being's Mythic Actions' header
+    # Being's Mythic Actions' header.
     attr_reader :mythic_actions_header
-    # Being's Array of Mythic Actions
+    # Being's Array of Mythic Actions.
     attr_reader :mythic_actions_list
-    # Being's list of {Item}s
+    # Being's list of {Item}s.
     attr_reader :gear
-    # Being's {Purse}
+    # Being's {Purse}.
     attr_reader :purse
-    # Being's flavor description/informations
+    # Being's flavor description/informations.
     attr_reader :description
-    # Being's Array of environments
+    # Being's Array of environments.
     attr_reader :environment
 
     # Create a new instance of Being.
