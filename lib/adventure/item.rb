@@ -213,11 +213,11 @@ module Adventure
       @source        = options.key?(:source) ? options[:source] : nil
       @ac            = options.key?(:ac) ? options[:ac] : nil
       @max_dex_bonus = options.key?(:max_dex_bonus) ? options[:max_dex_bonus].to_i : 0
-      if @dmg_notation
-        @dmg_die_count, @dmg_die_type, @dmg_mod = parse_damage_notation(@dmg_notation)
+      if options.key?(:dmg_notation) && !options[:dmg_notation].strip.empty?
+        @dmg_die_count, @dmg_die_type, @dmg_mod = parse_damage_notation(options[:dmg_notation].strip)
       else
-        @dmg_die_count = options.key?(:dmg_die_count) ? options[:dmg_die_count] : nil
-        @dmg_die_type  = options.key?(:dmg_die_type) ? options[:dmg_die_type] : nil
+        @dmg_die_count = options.key?(:dmg_die_count) ? options[:dmg_die_count].to_i : 0
+        @dmg_die_type  = options.key?(:dmg_die_type) ? options[:dmg_die_type].to_i : 0
         @dmg_mod       = options.key?(:dmg_mod) ? options[:dmg_mod].to_i : 0
       end
       @dmg_type      = options.key?(:dmg_type) ? options[:dmg_type] : nil
