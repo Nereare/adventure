@@ -14,7 +14,7 @@ Gemspec/DevelopmentDependencies:
 Metrics/BlockLength:
   Max: 50
 Metrics/ClassLength:
-  Max: 200
+  Enabled: false
 Metrics/PerceivedComplexity:
   Enabled: false
 Metrics/MethodLength:
