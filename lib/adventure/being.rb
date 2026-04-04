@@ -10,7 +10,12 @@ module Adventure
   # This class implements basic D&D stat management
   # functionalities, as well as battle capabilities.
   class Being
-    # Being's name
+    # List of all valid abilities.
+    ABILITIES = %i[str dex con int wis cha].freeze
+    # List of all valid skills.
+    SKILLS = %i[acrobatics animal_handling arcana athletics deception history insight intimidation investigation medicine nature perception performance persuasion religion sleight_hand stealth survival].freeze
+
+    # Being's name.
     attr_reader :name
     # Being's source text, when applicable
     attr_reader :source
