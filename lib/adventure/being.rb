@@ -229,6 +229,7 @@ module Adventure
       @ac                       = opts.key?(:ac) ? opts[:ac].to_i : 0
       @ac_desc                  = opts.key?(:ac_desc) ? opts[:ac_desc].strip : nil
       @hp                       = opts.key?(:hp) ? opts[:hp].to_i : 0
+      @current_hp               = @hp
       @hp_formula               = opts.key?(:hp_formula) ? opts[:hp_formula].strip : nil
       @dmg_vulnerabilities      = opts.key?(:dmg_vulnerabilities) ? opts[:dmg_vulnerabilities].to_a : []
       @dmg_resistances          = opts.key?(:dmg_resistances) ? opts[:dmg_resistances].to_a : []
@@ -401,6 +402,95 @@ module Adventure
       roll = rand(1..20)
 
       roll + mod
+    end
+
+    # Deal some damage to this Being, modifying the current
+    # HP accordingly.
+    #
+    # If the damage is greater than the current HP, the
+    # latter is normalized to `0`, instead.
+    #
+    # @param  amount  [Integer]   The amount of damage to be dealt, negative values are accepted, but are **not** counted as healing --- use {heal} instead.
+    def damage(amount)
+      amount       = amount.to_i.abs
+      @current_hp -= amount
+      @current_hp  = @current_hp.negative? ? 0 : @current_hp
+    end
+
+    # Heal this Being by the given amount, modifying the
+    # current HP accordingly.
+    #
+    # If the new current HP is greater than the maximun
+    # HP, the former is normalized to the maximun HP,
+    # instead.
+    #
+    # @param  amount  [Integer]   The amount to heal the Being by, negative values are accepted, but are **not** counted as damage --- use {damage} instead.
+    def heal(amount)
+      amount       = amount.to_i.abs
+      @current_hp += amount
+      @current_hp  = @current_hp > @hp ? @hp : @current_hp
+    end
+
+    # Whether this Being is dead or not.
+    #
+    # Uses the current HP as parameter to define dead
+    # status.
+    #
+    # @return         [Boolean]   `true` if current HP is `0`, `false` otherwise.
+    def dead?
+      @current_hp.zero?
+    end
+
+    # Whether this Being is alive or not.
+    #
+    # Uses the current HP as parameter to define life
+    # status.
+    #
+    # @return         [Boolean]   `true` if current HP is greater than `0`, `false` otherwise.
+    def alive?
+      @current_hp.positive?
+    end
+
+    # Alias for {ability_str}.
+    #
+    # @return         [Integer]   This Being's Strength score.
+    def str
+      @ability_str
+    end
+
+    # Alias for {ability_dex}.
+    #
+    # @return         [Integer]   This Being's Dexterity score.
+    def dex
+      @ability_dex
+    end
+
+    # Alias for {ability_con}.
+    #
+    # @return         [Integer]   This Being's Constitution score.
+    def con
+      @ability_con
+    end
+
+    # Alias for {ability_int}.
+    #
+    # @return         [Integer]   This Being's Intelligence score.
+    def int
+      @ability_int
+    end
+
+    # Alias for {ability_wis}.
+    #
+    # @return         [Integer]   This Being's Wisdom score.
+    def wis
+      @ability_wis
+    end
+
+    # Alias for {ability_cha}.
+    #
+    # @return         [Integer]   This Being's Charisma score.
+    def cha
+      @ability_cha
     end
 
     private
