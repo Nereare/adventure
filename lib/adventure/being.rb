@@ -51,55 +51,7 @@ module Adventure
     attr_reader :ability_wis
     # Being's Charisma score
     attr_reader :ability_cha
-    # Being's Strength saving throw
-    attr_reader :save_str
-    # Being's Dexterity saving throw
-    attr_reader :save_dex
-    # Being's Constitution saving throw
-    attr_reader :save_con
-    # Being's Intelligence saving throw
-    attr_reader :save_int
-    # Being's Wisdom saving throw
-    attr_reader :save_wis
-    # Being's Charisma saving throw
-    attr_reader :save_cha
-    # Being's Acrobatics skill bonus
-    attr_reader :skill_acrobatics
-    # Being's Animal Handling skill bonus
-    attr_reader :skill_animal_handling
-    # Being's Arcana skill bonus
-    attr_reader :skill_arcana
-    # Being's Athletics skill bonus
-    attr_reader :skill_athletics
-    # Being's Deception skill bonus
-    attr_reader :skill_deception
-    # Being's History skill bonus
-    attr_reader :skill_history
-    # Being's Insight skill bonus
-    attr_reader :skill_insight
-    # Being's Intimidation skill bonus
-    attr_reader :skill_intimidation
-    # Being's Investigation skill bonus
-    attr_reader :skill_investigation
-    # Being's Medicine skill bonus
-    attr_reader :skill_medicine
-    # Being's Nature skill bonus
-    attr_reader :skill_nature
-    # Being's Perception skill bonus
-    attr_reader :skill_perception
-    # Being's Performance skill bonus
-    attr_reader :skill_performance
-    # Being's Persuasion skill bonus
-    attr_reader :skill_persuasion
-    # Being's Religion skill bonus
-    attr_reader :skill_religion
-    # Being's Sleight of Hand skill bonus
-    attr_reader :skill_sleight_hand
-    # Being's Stealth skill bonus
-    attr_reader :skill_stealth
-    # Being's Survival skill bonus
-    attr_reader :skill_survival
-    # Being's Passive Perception score
+    # Being's Passive Perception score.
     attr_reader :passive_perception
     # Being's Armor Class
     attr_reader :ac
@@ -181,31 +133,9 @@ module Adventure
     # @option  opts  [Integer]              :ability_int               Being's Intelligence score, defaults to `10`, it unset.
     # @option  opts  [Integer]              :ability_wis               Being's Wisdom score, defaults to `10`, it unset.
     # @option  opts  [Integer]              :ability_cha               Being's Charisma score, defaults to `10`, it unset.
-    # @option  opts  [Integer]              :save_str                  Being's Strength saving throw.
-    # @option  opts  [Integer]              :save_dex                  Being's Dexterity saving throw.
-    # @option  opts  [Integer]              :save_con                  Being's Constitution saving throw.
-    # @option  opts  [Integer]              :save_int                  Being's Intelligence saving throw.
-    # @option  opts  [Integer]              :save_wis                  Being's Wisdom saving throw.
-    # @option  opts  [Integer]              :save_cha                  Being's Charisma saving throw.
-    # @option  opts  [Integer]              :skill_acrobatics          Being's Acrobatics skill bonus.
-    # @option  opts  [Integer]              :skill_animal_handling     Being's Animal Handling skill bonus.
-    # @option  opts  [Integer]              :skill_arcana              Being's Arcana skill bonus.
-    # @option  opts  [Integer]              :skill_athletics           Being's Athletics skill bonus.
-    # @option  opts  [Integer]              :skill_deception           Being's Deception skill bonus.
-    # @option  opts  [Integer]              :skill_history             Being's History skill bonus.
-    # @option  opts  [Integer]              :skill_insight             Being's Insight skill bonus.
-    # @option  opts  [Integer]              :skill_intimidation        Being's Intimidation skill bonus.
-    # @option  opts  [Integer]              :skill_investigation       Being's Investigation skill bonus.
-    # @option  opts  [Integer]              :skill_medicine            Being's Medicine skill bonus.
-    # @option  opts  [Integer]              :skill_nature              Being's Nature skill bonus.
-    # @option  opts  [Integer]              :skill_perception          Being's Perception skill bonus.
-    # @option  opts  [Integer]              :skill_performance         Being's Performance skill bonus.
-    # @option  opts  [Integer]              :skill_persuasion          Being's Persuasion skill bonus.
-    # @option  opts  [Integer]              :skill_religion            Being's Religion skill bonus.
-    # @option  opts  [Integer]              :skill_sleight_hand        Being's Sleight of Hand skill bonus.
-    # @option  opts  [Integer]              :skill_stealth             Being's Stealth skill bonus.
-    # @option  opts  [Integer]              :skill_survival            Being's Survival skill bonus.
-    # @option  opts  [Integer]              :passive_perception        Being's Passive Perception score.
+    # @option  opts  [Array<Symbol>]        :saves                     Being's Saving Throw proficiencies, as an Array of Symbol's for each proficient save.
+    # @option  opts  [Array<Symbol>]        :skills                    Being's Skill proficiencies, as an Array of Symbol's for each proficient skill.
+    # @option  opts  [Array<Symbol>]        :skills_expertise          Being's Skill expertises, as an Array of Symbol's for each proficient skill.
     # @option  opts  [Integer]              :ac                        Being's Armor Class.
     # @option  opts  [String]               :ac_desc                   Being's AC description, if any.
     # @option  opts  [Integer]              :hp                        Being's total/maximum Hit Points.
@@ -264,7 +194,6 @@ module Adventure
                                     }
                                   end
       @senses                   = opts.key?(:senses) ? opts[:senses].to_a : []
-      @languages                = opts.key?(:languages) ? opts[:languages].to_a : []
       if opts.key? :rand_abilities
         prefs                   = opts.key?(:ability_preferences) ? opts[:ability_preferences].to_a : nil
         min                     = opts.key?(:ability_min) ? opts[:ability_min].to_i : 1
@@ -278,32 +207,25 @@ module Adventure
         @ability_wis            = opts.key?(:ability_wis) ? opts[:ability_wis].to_i : 10
         @ability_cha            = opts.key?(:ability_cha) ? opts[:ability_cha].to_i : 10
       end
-      # TODO: Fix saving throw calculating - change :save_... from integer to boolean and using PB + ... modifier
-      @save_str                 = opts.key?(:save_str) ? opts[:save_str].to_i : 0
-      @save_dex                 = opts.key?(:save_dex) ? opts[:save_dex].to_i : 0
-      @save_con                 = opts.key?(:save_con) ? opts[:save_con].to_i : 0
-      @save_int                 = opts.key?(:save_int) ? opts[:save_int].to_i : 0
-      @save_wis                 = opts.key?(:save_wis) ? opts[:save_wis].to_i : 0
-      @save_cha                 = opts.key?(:save_cha) ? opts[:save_cha].to_i : 0
-      @skill_acrobatics         = opts.key?(:skill_acrobatics) ? opts[:skill_acrobatics].to_i : 0
-      @skill_animal_handling    = opts.key?(:skill_animal_handling) ? opts[:skill_animal_handling].to_i : 0
-      @skill_arcana             = opts.key?(:skill_arcana) ? opts[:skill_arcana].to_i : 0
-      @skill_athletics          = opts.key?(:skill_athletics) ? opts[:skill_athletics].to_i : 0
-      @skill_deception          = opts.key?(:skill_deception) ? opts[:skill_deception].to_i : 0
-      @skill_history            = opts.key?(:skill_history) ? opts[:skill_history].to_i : 0
-      @skill_insight            = opts.key?(:skill_insight) ? opts[:skill_insight].to_i : 0
-      @skill_intimidation       = opts.key?(:skill_intimidation) ? opts[:skill_intimidation].to_i : 0
-      @skill_investigation      = opts.key?(:skill_investigation) ? opts[:skill_investigation].to_i : 0
-      @skill_medicine           = opts.key?(:skill_medicine) ? opts[:skill_medicine].to_i : 0
-      @skill_nature             = opts.key?(:skill_nature) ? opts[:skill_nature].to_i : 0
-      @skill_perception         = opts.key?(:skill_perception) ? opts[:skill_perception].to_i : 0
-      @skill_performance        = opts.key?(:skill_performance) ? opts[:skill_performance].to_i : 0
-      @skill_persuasion         = opts.key?(:skill_persuasion) ? opts[:skill_persuasion].to_i : 0
-      @skill_religion           = opts.key?(:skill_religion) ? opts[:skill_religion].to_i : 0
-      @skill_sleight_hand       = opts.key?(:skill_sleight_hand) ? opts[:skill_sleight_hand].to_i : 0
-      @skill_stealth            = opts.key?(:skill_stealth) ? opts[:skill_stealth].to_i : 0
-      @skill_survival           = opts.key?(:skill_survival) ? opts[:skill_survival].to_i : 0
-      @passive_perception       = opts.key?(:passive_perception) ? opts[:passive_perception].to_i : 0
+      @languages                = opts.key?(:languages) ? opts[:languages].to_a : []
+      @saves                    = if opts.key? :saves
+                                    opts[:saves].to_a.uniq
+                                  else
+                                    []
+                                  end
+      @saves.select! { |save| ABILITIES.include? save }
+      @skills                   = if opts.key? :skills
+                                    opts[:skills].to_a.uniq
+                                  else
+                                    []
+                                  end
+      @skills.select! { |skill| SKILLS.include? skill }
+      @skills_expertise         = if opts.key? :skills_expertise
+                                    opts[:skills_expertise].to_a.uniq
+                                  else
+                                    []
+                                  end
+      @skills_expertise.select! { |skill| SKILLS.include? skill }
       @ac                       = opts.key?(:ac) ? opts[:ac].to_i : 0
       @ac_desc                  = opts.key?(:ac_desc) ? opts[:ac_desc].strip : nil
       @hp                       = opts.key?(:hp) ? opts[:hp].to_i : 0
@@ -331,6 +253,154 @@ module Adventure
       @purse                    = opts.key?(:purse) ? opts[:purse] : Purse.new
       @description              = opts.key?(:description) ? opts[:description].strip : nil
       @environment              = opts.key?(:environment) ? opts[:environment].to_a : []
+    end
+
+    # Get the Saving Throw modifier for the given ability.
+    #
+    # @param  ability   [Symbol,String]   The ability abbreviation as either a String or a Symbol.
+    # @raise            [StandardError]   If the given ability is not a valid ability abbreviation.
+    # @return           [Integer]         The corresponding save modifier.
+    # @see ABILITIES
+    def save(ability)
+      # Raise error if ability is not valid.
+      raise StandardError, 'Invalid ability.' unless ABILITIES.include?(ability.to_sym)
+
+      # Parse ability to valid string
+      ability = ability[0..2].downcase.to_swm
+      # Check for Proficiency in the Saving Throw
+      mod = @saves.include?(ability) ? @proficiency : 0
+
+      case ability
+      when :str then modifier(@str) + mod
+      when :dex then modifier(@dex) + mod
+      when :con then modifier(@con) + mod
+      when :int then modifier(@int) + mod
+      when :wis then modifier(@wis) + mod
+      when :cha then modifier(@cha) + mod
+      else
+        0
+      end
+    end
+
+    # Roll for a Saving Throw for the given ability.
+    #
+    # @param  ability   [Symbol,String]   The ability abbreviation as either a String or a Symbol.
+    # @raise            [StandardError]   If the given ability is not a valid ability abbreviation.
+    # @return           [Integer]         The roll's result added to the corresponding save modifier.
+    # @see ABILITIES
+    def roll_for_save(ability)
+      mod = save(ability)
+      roll = rand(1..20)
+
+      roll + mod
+    end
+
+    # Get the Skill modifier for the given skill.
+    #
+    # The possible skills are:
+    #
+    # - `:acrobatics`;
+    # - `:animal_handling`;
+    # - `:arcana`;
+    # - `:athletics`;
+    # - `:deception`;
+    # - `:history`;
+    # - `:insight`;
+    # - `:intimidation`;
+    # - `:investigation`;
+    # - `:medicine`;
+    # - `:nature`;
+    # - `:perception`;
+    # - `:performance`;
+    # - `:persuasion`;
+    # - `:religion`;
+    # - `:sleight_hand`;
+    # - `:stealth`; and
+    # - `:survival`.
+    #
+    # This method also accepts a String of the **full name**
+    # of the skill, as presented in the official character
+    # sheet.
+    #
+    # @param  skill     [Symbol,String]   The skill as either a String or a Symbol.
+    # @raise            [StandardError]   If the given skill is not a valid one.
+    # @return           [Integer]         The corresponding skill modifier.
+    # @see SKILLS
+    def skill(skill)
+      # Raise error if skill is not valid.
+      raise StandardError, 'Invalid skill.' unless SKILLS.include?(skill.to_sym)
+
+      # Parse skill to valid string
+      skill.gsub!(/ of/, '').gsub!(/ /, '_').downcase!
+      # Check for Proficiency or Expertise in the skill
+      mod = if @skills.include? skill.to_sym
+              @proficiency
+            elsif @skills_expertise.include? skill.to_sym
+              @proficiency * 2
+            else
+              0
+            end
+
+      case skill.to_sym
+      when :acrobatics then modifier(@dex) + mod
+      when :animal_handling then modifier(@wis) + mod
+      when :arcana then modifier(@int) + mod
+      when :athletics then modifier(@str) + mod
+      when :deception then modifier(@cha) + mod
+      when :history then modifier(@int) + mod
+      when :insight then modifier(@wis) + mod
+      when :intimidation then modifier(@cha) + mod
+      when :investigation then modifier(@int) + mod
+      when :medicine then modifier(@wis) + mod
+      when :nature then modifier(@int) + mod
+      when :perception then modifier(@wis) + mod
+      when :performance then modifier(@cha) + mod
+      when :persuasion then modifier(@cha) + mod
+      when :religion then modifier(@int) + mod
+      when :sleight_hand then modifier(@dex) + mod
+      when :stealth then modifier(@dex) + mod
+      when :survival then modifier(@wis) + mod
+      else
+        0
+      end
+    end
+
+    # Roll for the given Skill.
+    #
+    # The possible skills are:
+    #
+    # - `:acrobatics`;
+    # - `:animal_handling`;
+    # - `:arcana`;
+    # - `:athletics`;
+    # - `:deception`;
+    # - `:history`;
+    # - `:insight`;
+    # - `:intimidation`;
+    # - `:investigation`;
+    # - `:medicine`;
+    # - `:nature`;
+    # - `:perception`;
+    # - `:performance`;
+    # - `:persuasion`;
+    # - `:religion`;
+    # - `:sleight_hand`;
+    # - `:stealth`; and
+    # - `:survival`.
+    #
+    # This method also accepts a String of the **full name**
+    # of the skill, as presented in the official character
+    # sheet.
+    #
+    # @param  skill     [Symbol,String]   The skill as either a String or a Symbol.
+    # @raise            [StandardError]   If the given skill is not a valid one.
+    # @return           [Integer]         The roll's result added to the corresponding skill modifier, either plain, proficiency, or expertise.
+    # @see SKILLS
+    def roll_for_skill(skill)
+      mod = skill(skill)
+      roll = rand(1..20)
+
+      roll + mod
     end
 
     private
@@ -361,8 +431,6 @@ module Adventure
     # @option   opts  [Integer]         :min    The minimum value an ability can have, defaults to `1`.
     # @option   opts  [Integer]         :max    The minimum value an ability can have, defaults to `20`.
     def roll_for_abilities(**opts)
-      # Set filler with all valid abilities.
-      abilities = %i[str dex con int wis cha]
       # Get minimum value, or set it to `1`.
       min       = opts.key?(:min) ? opts[:min].to_i - 10 : -9
       # Get maximum value, or set it to `20`.
@@ -374,12 +442,12 @@ module Adventure
       prefs = if opts.key? :prefs
                 opts[:prefs].to_a.uniq
               else
-                abilities.shuffle
+                ABILITIES.shuffle
               end
       # Filter invalid abilities
-      prefs.select! { |x| abilities.include? x }
+      prefs.select! { |x| ABILITIES.include? x }
       # Add randomly any missing abilities, if applicable
-      missing_abilities = abilities - prefs
+      missing_abilities = ABILITIES - prefs
       prefs += missing_abilities.shuffle if missing_abilities.length.positive?
 
       # Roll scores
