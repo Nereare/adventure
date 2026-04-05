@@ -72,6 +72,16 @@ module Adventure
       @items.map(&:name)
     end
 
+    # Fetches the Inventory as an Array (through the inner
+    # {to_a} method) and returns such Array joined by the
+    # given separator.
+    #
+    # @param  separator   [String]      The string to join the array by.
+    # @return             [String]      A string of the name of each {Item}, separated by the given String.
+    def join(separator = ', ')
+      to_a.join(separator)
+    end
+
     # Return the number of items within the Inventory.
     #
     # @return         [Integer]   The number of items within the Inventory.
