@@ -259,7 +259,7 @@ module Adventure
     #
     # @return   [Integer, nil]  This iteration's damage dealt by the item, or nil if not a valid weapon
     def damage(advantage: false)
-      if @dmg_die_count.nil? || @dmg_die_type.nil?
+      if @dmg_die_count.zero? || @dmg_die_type.zero?
         nil
       else
         count = advantage ? @dmg_die_count * 2 : @dmg_die_count
@@ -275,7 +275,7 @@ module Adventure
     #
     # @return   [Boolean]   `true` if the item is a weapon and have damage parameters, `false` otherwise.
     def weapon?
-      if @type.downcase.include?('weapon') && !get_damage_notation.nil?
+      if @type.downcase.include?('weapon') && !damage_notation.nil?
         true
       else
         false
