@@ -208,8 +208,8 @@ module Adventure
       @type        = type
       # Optional parameters
       @rarity        = options.key?(:rarity) ? options[:rarity] : nil
-      @value         = options.key?(:value) ? options[:value] : nil
-      @weight        = options.key?(:weight) ? options[:weight] : nil
+      @value         = options.key?(:value) ? options[:value].to_f : 0.0
+      @weight        = options.key?(:weight) ? options[:weight].to_f : 0.0
       @source        = options.key?(:source) ? options[:source] : nil
       @ac            = options.key?(:ac) ? options[:ac] : nil
       @max_dex_bonus = options.key?(:max_dex_bonus) ? options[:max_dex_bonus].to_i : 0
