@@ -102,7 +102,7 @@ module Adventure
     # Being's Array of Mythic Actions.
     attr_reader :mythic_actions_list
     # Being's list of {Item}s.
-    attr_reader :gear
+    attr_reader :inventory
     # Being's {Purse}.
     attr_reader :purse
     # Being's flavor description/informations.
@@ -161,7 +161,7 @@ module Adventure
     # @option  opts  [Array]                :legendary_actions_list    Being's Array of Legendary Actions.
     # @option  opts  [String]               :mythic_actions_header     Being's Mythic Actions' header.
     # @option  opts  [Array]                :mythic_actions_list       Being's Array of Mythic Actions.
-    # @option  opts  [Array]                :gear                      Being's list of {Item}s.
+    # @option  opts  [Array]                :inventory                 Being's {Inventory}.
     # @option  opts  [Purse]                :purse                     Being's {Purse}.
     # @option  opts  [String]               :description               Being's flavor description/informations.
     # @option  opts  [Array]                :environment               Being's Array of environments.
@@ -252,7 +252,8 @@ module Adventure
       @legendary_actions_list   = opts.key?(:legendary_actions_list) ? opts[:legendary_actions_list].to_a : []
       @mythic_actions_header    = opts.key?(:mythic_actions_header) ? opts[:mythic_actions_header].strip : nil
       @mythic_actions_list      = opts.key?(:mythic_actions_list) ? opts[:mythic_actions_list].to_a : []
-      @gear                     = opts.key?(:gear) ? opts[:gear].to_a : []
+      @inventory                = opts.key?(:inventory) ? opts[:inventory] : []
+      @inventory                = Inventory.new unless @inventory.is_a? Inventory
       @purse                    = opts.key?(:purse) ? opts[:purse] : Purse.new
       @description              = opts.key?(:description) ? opts[:description].strip : nil
       @environment              = opts.key?(:environment) ? opts[:environment].to_a : []

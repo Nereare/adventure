@@ -96,5 +96,38 @@ module Adventure
     def dragging?
       carried_weight > @drag_weight
     end
+
+    # Get the first {Item} whose name includes the given
+    # String.
+    #
+    # This method is case-**insensitive**.
+    #
+    # @param  item    [String]    A full or partial name to search an {Item} by.
+    # @return         [Item, nil] Either the first {Item} whose name matches the given String, or `nil` if there is no match.
+    def get(item)
+      @items.find { |i| i.name.downcase.include? item.downcase }
+    end
+
+    # Include a new item to the {Inventory}.
+    #
+    # @param  item    [Item]      The {Item} to be added.
+    def add(item)
+      raise ArgumentError, 'Item to be added is not an Item.' unless item.is_a? Item
+
+      @items.push item
+    end
+
+    # Remove the first {Item} whose name includes the
+    # given String.
+    #
+    # This method is case-insensitive and finds the {Item}
+    # through the {get} method.
+    #
+    # @param  item    [String]    A full or partial name to search the {Item} to be removed by.
+    # @return         [Item, nil] Either the removed {Item}, or `nil` if no such {Item}.
+    def remove(item)
+      trash = get(item)
+      @items.delete trash
+    end
   end
 end
