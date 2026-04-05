@@ -334,7 +334,7 @@ module Adventure
       raise StandardError, 'Invalid skill.' unless SKILLS.include?(skill.to_sym)
 
       # Parse skill to valid string
-      skill.gsub!(/ of/, '').gsub!(/ /, '_').downcase!
+      skill.gsub!(' of', '').gsub!(/ /, '_').downcase!
       # Check for Proficiency or Expertise in the skill
       mod = if @skills.include? skill.to_sym
               @proficiency
@@ -430,7 +430,7 @@ module Adventure
     def heal(amount)
       amount       = amount.to_i.abs
       @current_hp += amount
-      @current_hp  = @current_hp > @hp ? @hp : @current_hp
+      @current_hp  = [@current_hp > @hp].min
     end
 
     # Whether this Being is dead or not.
