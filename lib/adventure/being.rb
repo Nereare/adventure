@@ -345,24 +345,16 @@ module Adventure
             end
 
       case skill.to_sym
-      when :acrobatics then modifier(@dex) + mod
-      when :animal_handling then modifier(@wis) + mod
-      when :arcana then modifier(@int) + mod
-      when :athletics then modifier(@str) + mod
-      when :deception then modifier(@cha) + mod
-      when :history then modifier(@int) + mod
-      when :insight then modifier(@wis) + mod
-      when :intimidation then modifier(@cha) + mod
-      when :investigation then modifier(@int) + mod
-      when :medicine then modifier(@wis) + mod
-      when :nature then modifier(@int) + mod
-      when :perception then modifier(@wis) + mod
-      when :performance then modifier(@cha) + mod
-      when :persuasion then modifier(@cha) + mod
-      when :religion then modifier(@int) + mod
-      when :sleight_hand then modifier(@dex) + mod
-      when :stealth then modifier(@dex) + mod
-      when :survival then modifier(@wis) + mod
+      when :athletics
+        modifier(@str) + mod
+      when :acrobatics, :sleight_hand, :stealth
+        modifier(@dex) + mod
+      when :arcana, :history, :investigation, :nature, :religion
+        modifier(@int) + mod
+      when :animal_handling, :insight, :medicine, :perception, :survival
+        modifier(@wis) + mod
+      when :deception, :intimidation, :performance, :persuasion
+        modifier(@cha) + mod
       else
         0
       end
