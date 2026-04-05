@@ -32,6 +32,13 @@ module Adventure
     # Create a new instance of Inventory.
     #
     # Accepts **only** {Item}'s as contents.
+    #
+    # @param  items   [Array<Item>]       A list of comma-separated {Item}s.
+    # @param  opts    [Hash]              A list of optional parameters.
+    # @option opts    [Float]   str       The Strength score of this {Inventory}'s holder.
+    # @option opts    [Symbol]  size      The size of this {Inventory}'s holder.
+    # @option opts    [Float]   modifier  Any other miscellaneous modifier to the carrying capacity.
+    # @see SIZES
     def initialize(*items, **opts)
       # Populate Inventory only with {Item}s
       @items             = items.grep(Item)
