@@ -46,8 +46,8 @@ module Adventure
     end
 
     # Run `each` blocks for each item in the Inventory.
-    def each(&block)
-      @items.each(&block)
+    def each(&)
+      @items.each(&)
     end
 
     # Return a String with the number of items within.
