@@ -22,7 +22,7 @@ module Adventure
       gargantuan: 8.0
     }.freeze
     # Valid sizes.
-    SIZES = %w(tiny medium large huge gargantuan)
+    SIZES = %w[tiny medium large huge gargantuan].freeze
 
     # This inventory's maximum carrying capacity, **in kilograms**.
     attr_reader :carrying_capacity
@@ -34,7 +34,7 @@ module Adventure
     # Accepts **only** {Item}'s as contents.
     def initialize(*items, **opts)
       # Populate Inventory only with {Item}s
-      @items             = items#.select { |i| i.is_a? Item }
+      @items             = items.grep(Item)
       # Get parameters
       str                = opts.key?(:str) ? opts[:str].to_f : 10
       size               = opts.key?(:size) ? opts[:size].to_sym : :medium
@@ -54,7 +54,7 @@ module Adventure
     #
     # @return         [String]    The String "Inventory containing X item(s)", with X being the item count and "item" word being pluralized accordingly.
     def to_s
-      "Inventory containing #{@items.count} item#{@items.count > 1 ? 's' : ''}"
+      "Inventory containing #{@items.count} item#{'s' if @items.count > 1}"
     end
 
     # Return an Array equivalent of the Inventory. This
@@ -62,7 +62,7 @@ module Adventure
     #
     # @return         [Array<String>]   An Array of Strings, each String being the name of an {Item} within.
     def to_a
-      @items.map { |i| i.name }
+      @items.map(&:name)
     end
 
     # Return the number of items within the Inventory.
@@ -76,7 +76,7 @@ module Adventure
     #
     # @return         [Float]   The total carried weight, in **kilograms**.
     def carried_weight
-      @items.sum { |i| i.weight }
+      @items.sum(&:weight)
     end
 
     # Get whether or not this Inventory is carrying items
