@@ -60,7 +60,7 @@ module Adventure
     # Being's total/maximum Hit Points.
     attr_reader :hp
     # Being's current HP, initialized as the same as maximum HP.
-    attr_reader :hp
+    attr_reader :current_hp
     # Being's HP dice formula.
     attr_reader :hp_formula
     # Being's Array of Damage Vulnerabilities, if any -- empty by default.
