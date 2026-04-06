@@ -8,12 +8,6 @@ module Adventure
     # List of valid directions.
     DIRECTIONS = %i[north northeast east southeast south southwest west northwest up down].freeze
 
-    # Room's name.
-    attr_reader :name
-    # Room's long description.
-    attr_reader :description
-    # Room's short description.
-    attr_reader :short_description
     # Room's exit.
     attr_reader :exits
     # Room's {Inventory}.
@@ -24,7 +18,6 @@ module Adventure
     # @param    name          [String]   The room's name.
     # @param    description   [String]   The room's long description.
     # @param    opts          [Hash]     A list of optional parameters.
-    # @option   opts          [String]      short_description   The room's description, but shorter.
     # @option   opts          [Boolean]     lit                 Whether or not this room is alight, `true` by default.
     # @option   opts          [Hash]        exits               A Hash of exits (other {Room}s), keyed by direction's Symbol.
     # @option   opts          [Inventory]   contents            The room's {Item} contents, empty {Inventory} by default.
@@ -34,7 +27,6 @@ module Adventure
       @name        = name
       @description = description
       # Other, optional, parameters
-      @short_desc  = opts.key?(:short_description) ? opts[:short_description].trim : nil
       @lit         = opts.key?(:lit) ? opts[:lit] : true
       @exits       = opts.key?(:exits) ? opts[:exits].to_h : {}
       @inventory   = opts.key?(:inventory) ? opts[:inventory] : Inventory.new
@@ -42,8 +34,33 @@ module Adventure
     end
 
     # Returns this room's name, or "Dark Room" if unlit.
+    #
+    # @return             [String]    Either the room's name, or 'Dark Room' if unlit.
     def to_s
       @lit ? @name : 'Dark Room'
+    end
+
+    # Returns this room's name, or "Dark Room" if unlit.
+    #
+    # Runs the {to_s} method, under the hood.
+    #
+    # @return             [String]    Either the room's name, or 'Dark Room' if unlit.
+    def name
+      to_s
+    end
+
+    # Returns this room's description, or a non-description
+    # of seeing nothing, if unlit.
+    #
+    # The non-decription for a dark room can be customized,
+    # but defaults to:
+    #
+    # > You see nothing in the darkness.
+    #
+    # @param  dark_text   [String]    The placeholder non-description if this room is unlit.
+    # @return             [String]    Either this room's description, or a non-description if unlit.
+    def description(dark_text = 'You see nothing in the darkness.')
+      @lit ? @description : dark_text
     end
 
     # Returns a description of the contents of this {Room},
