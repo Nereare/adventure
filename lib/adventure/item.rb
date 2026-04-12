@@ -308,6 +308,13 @@ module Adventure
       ac
     end
 
+    # Alias for {::value}.
+    #
+    # @return   [Float]                     The value of the item.
+    def price
+      @value
+    end
+
     private
 
     # Parse damage notation to actual damage data.
