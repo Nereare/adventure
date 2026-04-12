@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'adventure/room'
+require_relative 'room'
 
 module Adventure
   # Gem's name.
-  class Adventure
+  class Game
     # The adventure's title / name.
     attr_reader :title
     # The adventure's subtitle / flavor text.

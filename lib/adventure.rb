@@ -3,8 +3,8 @@
 require 'tty-exit'
 require 'tty-option'
 
-require_relative 'adventure/adventure'
 require_relative 'adventure/being'
+require_relative 'adventure/game'
 require_relative 'adventure/inventory'
 require_relative 'adventure/item'
 require_relative 'adventure/meta'
