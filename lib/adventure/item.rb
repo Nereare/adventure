@@ -16,15 +16,15 @@ module Adventure
     # {Adventure::Item::Rarity}, a String, or
     # `nil` when unset.
     attr_reader :rarity
+    # Whether the item requires attunement or not. If
+    # a string, it will be prepended by *"Requires attunement "*.
+    attr_reader :attunement
     # The value of the item, a Float representing
     # such value in gold pieces, or `nil` when unset.
     attr_accessor :value
     # The weight of the item, a Float in **kilograms**,
     # or `nil` when unset.
     attr_accessor :weight
-    # Whether the item requires attunement or not. If
-    # a string, it will be prepended by *"Requires attunement "*.
-    attr_accessor :attunement
     # The source of the item, a String, with source
     # name and page when applicable, or `nil` when
     # unset.
