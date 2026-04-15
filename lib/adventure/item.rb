@@ -22,6 +22,9 @@ module Adventure
     # The weight of the item, a Float in **kilograms**,
     # or `nil` when unset.
     attr_accessor :weight
+    # Whether the item requires attunement or not. If
+    # a string, it will be prepended by *"Requires attunement "*.
+    attr_accessor :attunement
     # The source of the item, a String, with source
     # name and page when applicable, or `nil` when
     # unset.
