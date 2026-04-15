@@ -96,6 +96,13 @@ module Adventure
       @items.sum(&:weight)
     end
 
+    # Alias to {::carried_weight}
+    #
+    # @return         [Float]   The total carried weight, in **kilograms**.
+    def to_f
+      carried_weight
+    end
+
     # Get whether or not this Inventory is carrying items
     # with a total weight over its Carrying Capacity --- *i.e.*
     # the Inventory imposes encumberance.
