@@ -3,33 +3,33 @@
 RSpec.describe Adventure::Purse do
   describe 'Purse class methods' do
     it 'parses a GP equivalent total into its coin equivalents' do
-      expect(Adventure::Purse).to respond_to(:parse_total)
-      expect(Adventure::Purse.parse_total(123.12)).to be_a(Hash)
+      expect(described_class).to respond_to(:parse_total)
+      expect(described_class.parse_total(123.12)).to be_a(Hash)
     end
 
     it 'parses a Hash of coin counts into its GP equivalent total' do
-      expect(Adventure::Purse).to respond_to(:parse_coins)
-      expect(Adventure::Purse.parse_coins(cp: 12, gp: 3)).to be_a(Float)
+      expect(described_class).to respond_to(:parse_coins)
+      expect(described_class.parse_coins(cp: 12, gp: 3)).to be_a(Float)
     end
   end
 
   describe 'Purse creation' do
     it 'instantializes a minimal (empty) purse' do
-      expect(Adventure::Purse.new).to be
+      expect(described_class.new).to be_instance_of(described_class)
     end
 
     it 'instantializes a purse with a GP equivalent' do
-      expect(Adventure::Purse.new(total: 12.25)).to be
+      expect(described_class.new(total: 12.25)).to be_instance_of(described_class)
     end
 
     it 'instantializes a purse with a list of coins' do
-      expect(Adventure::Purse.new(cp: 5, sp: 50, pp: 6)).to be
+      expect(described_class.new(cp: 5, sp: 50, pp: 6)).to be_instance_of(described_class)
     end
   end
 
   describe 'Purse methods' do
-    before(:example) do
-      @purse = Adventure::Purse.new(
+    before do
+      @purse = described_class.new(
         cp: 5,
         sp: 50,
         pp: 6
@@ -63,16 +63,16 @@ RSpec.describe Adventure::Purse do
     end
 
     it 'is chargeable for values, as a total GP equivalent' do
-      expect{ @purse.charge(0.5) }.not_to raise_error
+      expect { @purse.charge(0.5) }.not_to raise_error
     end
 
     it 'is chargeable for values, as a list of coins' do
-      expect{ @purse.charge({cp: 80}) }.not_to raise_error
+      expect { @purse.charge({ cp: 80 }) }.not_to raise_error
     end
 
     it 'is **not** chargeable for values, as other types' do
-      expect{ @purse.charge('cp: 80') }.to raise_error(StandardError)
-      expect{ @purse.charge([80, 0, 0, 0]) }.to raise_error(StandardError)
+      expect { @purse.charge('cp: 80') }.to raise_error(StandardError)
+      expect { @purse.charge([80, 0, 0, 0]) }.to raise_error(StandardError)
     end
 
     it 'is open to receive values' do
@@ -80,16 +80,16 @@ RSpec.describe Adventure::Purse do
     end
 
     it 'is open to receive values, as a total GP equivalent' do
-      expect{ @purse.receive(0.5) }.not_to raise_error
+      expect { @purse.receive(0.5) }.not_to raise_error
     end
 
     it 'is open to receive values, as a list of coins' do
-      expect{ @purse.receive({cp: 80}) }.not_to raise_error
+      expect { @purse.receive({ cp: 80 }) }.not_to raise_error
     end
 
     it 'is **not** open to receive values, as other types' do
-      expect{ @purse.receive('cp: 80') }.to raise_error(StandardError)
-      expect{ @purse.receive([80, 0, 0, 0]) }.to raise_error(StandardError)
+      expect { @purse.receive('cp: 80') }.to raise_error(StandardError)
+      expect { @purse.receive([80, 0, 0, 0]) }.to raise_error(StandardError)
     end
   end
 end

@@ -21,17 +21,17 @@ RSpec.describe Adventure::Item do
 
   describe 'Item creation' do
     it 'instantializes a minimal item' do
-      expect(Adventure::Item.new('Test', 'Test item description.', Adventure::Item::Type::TOOL)).to be
+      expect(described_class.new('Test', 'Test item description.', Adventure::Item::Type::TOOL)).to be_instance_of(described_class)
     end
 
     it 'instantializes an item with price and weight' do
-      expect(Adventure::Item.new('Test 2', 'Test item 2 description.', Adventure::Item::Type::TOOL, price: 10.0, weight: 1.0)).to be
+      expect(described_class.new('Test 2', 'Test item 2 description.', Adventure::Item::Type::TOOL, price: 10.0, weight: 1.0)).to be_instance_of(described_class)
     end
   end
 
   describe 'Item global methods' do
-    before(:example) do
-      @item3 = Adventure::Item.new(
+    before do
+      @item3 = described_class.new(
         'Test 3',
         'Test item 3 description.',
         Adventure::Item::Type::TOOL,
@@ -66,8 +66,8 @@ RSpec.describe Adventure::Item do
   end
 
   describe 'Weapon item methods' do
-    before(:example) do
-      @weapon = Adventure::Item.new(
+    before do
+      @weapon = described_class.new(
         'Test Weapon',
         'Test weapon description.',
         Adventure::Item::Type::WEAPON_MELEE,
@@ -79,12 +79,12 @@ RSpec.describe Adventure::Item do
     end
 
     it 'returns true when checked if weapon' do
-      expect(@weapon.weapon?).to be_truthy
+      expect(@weapon).to be_weapon
     end
 
     it 'has a damage specification' do
       expect(@weapon.damage_notation).not_to be_nil
-      expect(@weapon.damage_notation).to match(/\d+d\d+([\+-]\d)?/)
+      expect(@weapon.damage_notation).to match(/\d+d\d+([+-]\d)?/)
     end
 
     it 'rolls for damage' do
@@ -94,8 +94,8 @@ RSpec.describe Adventure::Item do
   end
 
   describe 'Armor item methods' do
-    before(:example) do
-      @armor = Adventure::Item.new(
+    before do
+      @armor = described_class.new(
         'Test Armor',
         'Test armor description.',
         Adventure::Item::Type::ARMOR_LIGHT,
@@ -106,7 +106,7 @@ RSpec.describe Adventure::Item do
     end
 
     it 'returns true when checked if armor' do
-      expect(@armor.armor?).to be_truthy
+      expect(@armor).to be_armor
     end
 
     it 'has an Armor Class (AC)' do
@@ -116,8 +116,8 @@ RSpec.describe Adventure::Item do
   end
 
   describe 'Magic item methods' do
-    before(:example) do
-      @magic_item = Adventure::Item.new(
+    before do
+      @magic_item = described_class.new(
         'Magic Item',
         'Magic item description.',
         Adventure::Item::Type::WONDROUS,
@@ -130,7 +130,7 @@ RSpec.describe Adventure::Item do
     end
 
     it 'returns true when checked if magic' do
-      expect(@magic_item.magic?).to be_truthy
+      expect(@magic_item).to be_magic
     end
 
     it 'has a rarity' do

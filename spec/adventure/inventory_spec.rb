@@ -3,7 +3,7 @@
 RSpec.describe Adventure::Inventory do
   describe 'Metadata checks' do
     it 'implements Enumerable' do
-      expect(subject).to be_an(Enumerable)
+      expect(described_class).to be_an(Enumerable)
     end
 
     it 'sets the kilogram per STR point carry weight ratio constant' do
@@ -28,8 +28,8 @@ RSpec.describe Adventure::Inventory do
   end
 
   describe 'Inventory creation' do
-    before(:example) do
-      @inventory = Adventure::Inventory.new(
+    before do
+      @inventory = described_class.new(
         Adventure::Item.new('Item 1', 'Item 1 desc.', Adventure::Item::Type::TOOL),
         Adventure::Item.new('Item 2', 'Item 2 desc.', Adventure::Item::Type::TOOL),
         str: 14
@@ -37,13 +37,13 @@ RSpec.describe Adventure::Inventory do
     end
 
     it 'instantializes an inventory' do
-      expect(@inventory).to be
+      expect(@inventory).to be_instance_of(described_class)
     end
   end
 
   describe 'Inventory methods' do
-    before(:example) do
-      @inventory = Adventure::Inventory.new(
+    before do
+      @inventory = described_class.new(
         Adventure::Item.new('Item 1', 'Item 1 desc.', Adventure::Item::Type::TOOL),
         Adventure::Item.new('Item 2', 'Item 2 desc.', Adventure::Item::Type::TOOL),
         str: 14,
