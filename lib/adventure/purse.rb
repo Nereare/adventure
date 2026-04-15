@@ -53,6 +53,13 @@ module Adventure
       total
     end
 
+    # Alias for {::gp_equivalent}
+    #
+    # @return   [Float]   A floating-point equivalent of `gp`s.
+    def to_f
+      gp_equivalent
+    end
+
     # The {Purse}'s contents as a string of each coins'
     # quantities.
     #
