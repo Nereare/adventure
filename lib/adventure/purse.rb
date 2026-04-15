@@ -87,7 +87,7 @@ module Adventure
 
       # Parse given debt according to its type.
       if debt.is_a? Hash
-        debt = parse_coins(debt)
+        debt = self.class.parse_coins(**debt)
       elsif debt.is_a? Numeric
         debt = debt.to_f
       else
@@ -95,11 +95,11 @@ module Adventure
       end
       # Raise an error if the money is insuficient to pay
       # the debt.
-      raise StandardError, 'Insuficient money error.' if money < parsed_debt
+      raise StandardError, 'Insuficient money error.' if money < debt
 
       # If the money is suficient, begin charging.
       new_money = money - debt
-      @cp, @sp, @gp, @pp = parse_total(new_money).values
+      @cp, @sp, @gp, @pp = self.class.parse_total(new_money).values
     end
 
     # Adds a given quantity to this {Purse}.
@@ -114,7 +114,7 @@ module Adventure
         @gp += credit.key?(:gp) ? credit[:gp].to_i.abs : 0
         @pp += credit.key?(:pp) ? credit[:pp].to_i.abs : 0
       elsif credit.is_a? Numeric
-        new_cp, new_sp, new_gp, new_pp = parse_total(credit).values.map(&:abs)
+        new_cp, new_sp, new_gp, new_pp = self.class.parse_total(credit).values.map(&:abs)
         @cp += new_cp
         @sp += new_sp
         @gp += new_gp
