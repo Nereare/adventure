@@ -29,3 +29,7 @@ Layout/EndOfLine:
   EnforcedStyle: lf
 Lint/Void:
   Enabled: false
+RSpec/InstanceVariable:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Max: 5
