@@ -75,5 +75,54 @@ RSpec.describe Adventure::Item do
     end
   end
 
-  # TODO: Armor and Magic item test suites
+  describe 'Armor item methods' do
+    before(:example) do
+      @armor = Adventure::Item.new(
+        'Test Armor',
+        'Test armor description.',
+        Adventure::Item::Type::ARMOR_LIGHT,
+        price: 81.0,
+        weight: 30.0,
+        ac: 12
+      )
+    end
+
+    it 'returns true when checked if armor' do
+      expect(@armor.armor?).to be_truthy
+    end
+
+    it 'has an Armor Class (AC)' do
+      expect(@armor.ac(4)).not_to be_nil
+      expect(@armor.ac(4)).to be_a(Integer)
+    end
+  end
+
+  describe 'Magic item methods' do
+    before(:example) do
+      @magic_item = Adventure::Item.new(
+        'Magic Item',
+        'Magic item description.',
+        Adventure::Item::Type::WONDROUS,
+        price: 3_800.0,
+        weight: 0.5,
+        magic: true,
+        rarity: Adventure::Item::Rarity::RARE,
+        attunement: true
+      )
+    end
+
+    it 'returns true when checked if magic' do
+      expect(@magic_item.magic?).to be_truthy
+    end
+
+    it 'has a rarity' do
+      expect(@magic_item.rarity).not_to be_nil
+      expect(@magic_item.rarity).to be_a(String)
+    end
+
+    it 'either requires attunement as a text, or doesn\'t as an empty String' do
+      expect(@magic_item.attunement).not_to be_nil
+      expect(@magic_item.attunement).to be_a(String)
+    end
+  end
 end
