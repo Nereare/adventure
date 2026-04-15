@@ -1,6 +1,24 @@
 # frozen_string_literal: true
 
 RSpec.describe Adventure::Item do
+  describe 'Metadata checks' do
+    it 'has a list of item types' do
+      expect(Adventure::Item::Type).to be_a(Module)
+    end
+
+    it 'has a list of damage types' do
+      expect(Adventure::Item::DamageType).to be_a(Module)
+    end
+
+    it 'has a list of rarities' do
+      expect(Adventure::Item::Rarity).to be_a(Module)
+    end
+
+    it 'has a list of possible properties' do
+      expect(Adventure::Item::Property).to be_a(Module)
+    end
+  end
+
   describe 'Item creation' do
     it 'instantializes a minimal item' do
       expect(Adventure::Item.new('Test', 'Test item description.', Adventure::Item::Type::TOOL)).to be
