@@ -230,7 +230,7 @@ module Adventure
         @attunement  = 'Requires attunement'
         @attunement += " #{options[:attunement].strip}" if options[:attunement].is_a?(String)
       else
-        @attunement  = nil
+        @attunement  = ''
       end
       @properties = options.key?(:properties) ? options[:properties] : nil
     end
