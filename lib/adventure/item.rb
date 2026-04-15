@@ -215,7 +215,7 @@ module Adventure
       @weight        = options.key?(:weight) ? options[:weight].to_f : 0.0
       @source        = options.key?(:source) ? options[:source] : nil
       @ac            = options.key?(:ac) ? options[:ac] : nil
-      @max_dex_bonus = options.key?(:max_dex_bonus) ? options[:max_dex_bonus].to_i : 0
+      @max_dex_bonus = options.key?(:max_dex_bonus) ? options[:max_dex_bonus].to_i : 1_000
       if options.key?(:dmg_notation) && !options[:dmg_notation].strip.empty?
         @dmg_die_count, @dmg_die_type, @dmg_mod = parse_damage_notation(options[:dmg_notation].strip)
       else
