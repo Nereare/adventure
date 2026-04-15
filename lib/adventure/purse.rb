@@ -27,7 +27,7 @@ module Adventure
     # @option  opts  [Float]  :total  The `gp` equivalent of the {Purse} contents.
     def initialize(**opts)
       if opts.key?(:total)
-        @cp, @sp, @gp, @pp = parse_total(opts[:total]).values
+        @cp, @sp, @gp, @pp = self.class.parse_total(opts[:total].to_f).values
       elsif opts.key?(:cp) || opts.key?(:sp) || opts.key?(:gp) || opts.key?(:pp)
         @cp = opts.key?(:cp) ? opts[:cp].to_i : 0
         @sp = opts.key?(:sp) ? opts[:sp].to_i : 0
