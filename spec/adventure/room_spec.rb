@@ -42,8 +42,36 @@ RSpec.describe Adventure::Room do
     it 'returns the room\'s name' do
       expect(@room.to_s).not_to be_nil
       expect(@room.to_s).to be_a(String)
+      expect(@room.name).not_to be_nil
+      expect(@room.name).to be_a(String)
     end
 
-    # TODO: Continue here...
+    it 'returns the room\'s description' do
+      expect(@room.description).not_to be_nil
+      expect(@room.description).to be_a(String)
+    end
+
+    it 'returns the room\'s contents as a string' do
+      expect(@room.contents).not_to be_nil
+      expect(@room.contents).to be_a(String)
+    end
+
+    it 'returns the room\'s contents as an Inventory object' do
+      expect(@room.inventory).not_to be_nil
+      expect(@room.inventory).to be_an(Adventure::Inventory)
+    end
+
+    it 'returns the room\'s specific exit' do
+      expect(@room.exit(:north)).not_to be_nil
+      expect(@room.exit(:north)).to be_an(Adventure::Room)
+      expect(@room.east).not_to be_nil
+      expect(@room.east).to be_an(Adventure::Room)
+    end
+
+    it 'returns a list of the room\'s exits' do
+      expect(@room.exits).not_to be_nil
+      expect(@room.exits).to be_a(Hash)
+      expect(@room.exits.values).to all(be_an(Adventure::Room))
+    end
   end
 end
