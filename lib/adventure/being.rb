@@ -40,17 +40,17 @@ module Adventure
     # Being's Array of known languages.
     attr_reader :languages
     # Being's Strength score.
-    attr_reader :ability_str
+    attr_reader :str
     # Being's Dexterity score.
-    attr_reader :ability_dex
+    attr_reader :dex
     # Being's Constitution score.
-    attr_reader :ability_con
+    attr_reader :con
     # Being's Intelligence score.
-    attr_reader :ability_int
+    attr_reader :int
     # Being's Wisdom score.
-    attr_reader :ability_wis
+    attr_reader :wis
     # Being's Charisma score.
-    attr_reader :ability_cha
+    attr_reader :cha
     # Being's Passive Perception score.
     attr_reader :passive_perception
     # Being's Armor Class.
@@ -129,12 +129,12 @@ module Adventure
     # @option  opts  [Array<Symbol>]        :ability_preferences       An array of prioritary abilities, from most importante (index = `0`) to least (last index).
     # @option  opts  [Integer]              :ability_min               The minimum value an ability can be, used only when randomly generating ability scores.
     # @option  opts  [Integer]              :ability_max               The maximum value an ability can be, used only when randomly generating ability scores.
-    # @option  opts  [Integer]              :ability_str               Being's Strength score, defaults to `10`, it unset.
-    # @option  opts  [Integer]              :ability_dex               Being's Dexterity score, defaults to `10`, it unset.
-    # @option  opts  [Integer]              :ability_con               Being's Constitution score, defaults to `10`, it unset.
-    # @option  opts  [Integer]              :ability_int               Being's Intelligence score, defaults to `10`, it unset.
-    # @option  opts  [Integer]              :ability_wis               Being's Wisdom score, defaults to `10`, it unset.
-    # @option  opts  [Integer]              :ability_cha               Being's Charisma score, defaults to `10`, it unset.
+    # @option  opts  [Integer]              :str                       Being's Strength score, defaults to `10`, it unset.
+    # @option  opts  [Integer]              :dex                       Being's Dexterity score, defaults to `10`, it unset.
+    # @option  opts  [Integer]              :con                       Being's Constitution score, defaults to `10`, it unset.
+    # @option  opts  [Integer]              :int                       Being's Intelligence score, defaults to `10`, it unset.
+    # @option  opts  [Integer]              :wis                       Being's Wisdom score, defaults to `10`, it unset.
+    # @option  opts  [Integer]              :cha                       Being's Charisma score, defaults to `10`, it unset.
     # @option  opts  [Array<Symbol>]        :saves                     Being's Saving Throw proficiencies, as an Array of Symbol's for each proficient save.
     # @option  opts  [Array<Symbol>]        :skills                    Being's Skill proficiencies, as an Array of Symbol's for each proficient skill.
     # @option  opts  [Array<Symbol>]        :skills_expertise          Being's Skill expertises, as an Array of Symbol's for each proficient skill.
@@ -202,12 +202,12 @@ module Adventure
         max                     = opts.key?(:ability_max) ? opts[:ability_max].to_i : 20
         roll_for_abilities(prefs: prefs, min: min, max: max)
       else
-        @ability_str            = opts.key?(:ability_str) ? opts[:ability_str].to_i : 10
-        @ability_dex            = opts.key?(:ability_dex) ? opts[:ability_dex].to_i : 10
-        @ability_con            = opts.key?(:ability_con) ? opts[:ability_con].to_i : 10
-        @ability_int            = opts.key?(:ability_int) ? opts[:ability_int].to_i : 10
-        @ability_wis            = opts.key?(:ability_wis) ? opts[:ability_wis].to_i : 10
-        @ability_cha            = opts.key?(:ability_cha) ? opts[:ability_cha].to_i : 10
+        @str                    = opts.key?(:str) ? opts[:@str].to_i : 10
+        @dex                    = opts.key?(:dex) ? opts[:@dex].to_i : 10
+        @con                    = opts.key?(:con) ? opts[:@con].to_i : 10
+        @int                    = opts.key?(:int) ? opts[:@int].to_i : 10
+        @wis                    = opts.key?(:wis) ? opts[:@wis].to_i : 10
+        @cha                    = opts.key?(:cha) ? opts[:@cha].to_i : 10
       end
       @languages                = opts.key?(:languages) ? opts[:languages].to_a : []
       @saves                    = if opts.key? :saves
@@ -446,48 +446,6 @@ module Adventure
       @current_hp.positive?
     end
 
-    # Alias for {ability_str}.
-    #
-    # @return         [Integer]   This Being's Strength score.
-    def str
-      @ability_str
-    end
-
-    # Alias for {ability_dex}.
-    #
-    # @return         [Integer]   This Being's Dexterity score.
-    def dex
-      @ability_dex
-    end
-
-    # Alias for {ability_con}.
-    #
-    # @return         [Integer]   This Being's Constitution score.
-    def con
-      @ability_con
-    end
-
-    # Alias for {ability_int}.
-    #
-    # @return         [Integer]   This Being's Intelligence score.
-    def int
-      @ability_int
-    end
-
-    # Alias for {ability_wis}.
-    #
-    # @return         [Integer]   This Being's Wisdom score.
-    def wis
-      @ability_wis
-    end
-
-    # Alias for {ability_cha}.
-    #
-    # @return         [Integer]   This Being's Charisma score.
-    def cha
-      @ability_cha
-    end
-
     private
 
     # Calculate proficiency bonus according to [Someone_Evil's formula](https://rpg.stackexchange.com/questions/161150/what-is-the-mathematical-formula-for-proficiency-bonus-vs-level-cr).
@@ -546,12 +504,12 @@ module Adventure
       # Assign scores to abilities
       prefs.each_with_index do |a, i|
         case a
-        when :str then @ability_str = scores[i]
-        when :dex then @ability_dex = scores[i]
-        when :con then @ability_con = scores[i]
-        when :int then @ability_int = scores[i]
-        when :wis then @ability_wis = scores[i]
-        when :cha then @ability_cha = scores[i]
+        when :str then @str = scores[i]
+        when :dex then @dex = scores[i]
+        when :con then @con = scores[i]
+        when :int then @int = scores[i]
+        when :wis then @wis = scores[i]
+        when :cha then @cha = scores[i]
         end
       end
     end
