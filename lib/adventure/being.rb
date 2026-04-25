@@ -254,7 +254,8 @@ module Adventure
       @mythic_actions_list      = opts.key?(:mythic_actions_list) ? opts[:mythic_actions_list].to_a : []
       @inventory                = opts.key?(:inventory) ? opts[:inventory] : []
       @inventory                = Inventory.new unless @inventory.is_a? Inventory
-      @purse                    = opts.key?(:purse) ? opts[:purse] : Purse.new
+      @purse                    = opts.key?(:purse) ? opts[:purse] : []
+      @purse                    = Purse.new unless @purse.is_a? Purse
       @description              = opts.key?(:description) ? opts[:description].strip : nil
       @environment              = opts.key?(:environment) ? opts[:environment].to_a : []
     end
