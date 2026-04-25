@@ -168,7 +168,7 @@ module Adventure
     def initialize(name, **opts)
       @name                     = name.strip
       @source                   = opts.key?(:source) ? opts[:source].strip : nil
-      @align                    = opts.key?(:align) ? opts[:align].strip : nil
+      @align                    = opts.key?(:align) ? opts[:align].strip : 'Unaligned'
       if opts.key? :cr
         @cr                     = opts.key?(:cr) ? opts[:cr].to_f : 0.0
         @levels                 = nil
