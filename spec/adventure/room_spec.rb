@@ -1,0 +1,49 @@
+# frozen_string_literal: true
+
+RSpec.describe Adventure::Room do
+  describe 'Room creation' do
+    it 'instantializes a minimal room' do
+      expect(described_class.new('Test Room', 'Test room description.')).to be_instance_of(described_class)
+    end
+
+    it 'instantializes a minimal dark room' do
+      expect(described_class.new('Test Room 2', 'Test room 2 description.', lit: false)).to be_instance_of(described_class)
+    end
+
+    it 'instantializes a room with exits' do
+      expect(described_class.new(
+        'Test Room 3',
+        'Test room 3 description.',
+        exits: {
+          north: described_class.new('North Exit', 'North exit description'),
+          east: described_class.new('East Exit', 'East exit description.')
+        }
+      )).to be_instance_of(described_class)
+    end
+  end
+
+  describe 'Room methods' do
+    before do
+      @room = described_class.new(
+        'Complex Test Room',
+        'Complex test room description.',
+        lit: true,
+        exits: {
+          north: described_class.new('North Exit', 'North exit description'),
+          east: described_class.new('East Exit', 'East exit description.')
+        },
+        contents: Adventure::Inventory.new(
+          Adventure::Item.new('Item 1', 'Item 1 description.', Adventure::Item::Type::TOOL),
+          Adventure::Item.new('Item 2', 'Item 2 description.', Adventure::Item::Type::TOOL)
+        )
+      )
+    end
+
+    it 'returns the room\'s name' do
+      expect(@room.to_s).not_to be_nil
+      expect(@room.to_s).to be_a(String)
+    end
+
+    # TODO: Continue here...
+  end
+end
