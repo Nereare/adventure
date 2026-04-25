@@ -84,7 +84,7 @@ module Adventure
     # @option   opts    [String]  :no_items     A text to use in place of `:items` if the room has no {Item}s within.
     def contents(**opts)
       # Fetch optional parameters
-      base_text = opts.key?(:base_text) ? opts[:base_text].trim : ':name contains :items.'
+      base_text = opts.key?(:base_text) ? opts[:base_text].trim : ':name contains :items.'.dup
       dark_text = opts.key?(:dark_text) ? opts[:dark_text].trim : 'You can see no contents.'
       separator = opts.key?(:separator) ? opts[:separator] : ', '
       no_items  = opts.key?(:no_items) ? opts[:no_items].trim : 'no items'
