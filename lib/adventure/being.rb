@@ -259,6 +259,49 @@ module Adventure
       @environment              = opts.key?(:environment) ? opts[:environment].to_a : []
     end
 
+    # Get the being's name.
+    #
+    # @return           [String]          The being's name.
+    def to_s
+      @name
+    end
+
+    # Get either the being's Challenge Rating or the sum
+    # of its levels.
+    #
+    # @return           [Integer]         Either the being's CR or the sum of its levels.
+    def to_i
+      if @levels.nil?
+        @cr
+      else
+        @levels.values.sum
+      end
+    end
+
+    # Get an Array of the being's abilities in the classical
+    # order: Strength, Dexterity, Constitution, Intelligence,
+    # Wisdom, and Charisma.
+    #
+    # @return           [Array]           An Array of the being's abilities: `[STR, DEX, CON, INT, WIS, CHA]`.
+    def to_a
+      [@str, @dex, @con, @int, @wis, @cha]
+    end
+
+    # Get a Hash of the being's abilities, indexed by each
+    # ability abbreviation.
+    #
+    # @return           [Hash]            A Hash of the being's abilities.
+    def to_h
+      {
+        str: @str,
+        dex: @dex,
+        con: @con,
+        int: @int,
+        wis: @wis,
+        cha: @cha
+      }
+    end
+
     # Get the Saving Throw modifier for the given ability.
     #
     # @param  ability   [Symbol,String]   The ability abbreviation as either a String or a Symbol.
