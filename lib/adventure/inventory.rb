@@ -15,14 +15,18 @@ module Adventure
     DRAG_KG_PER_STR = 14.0
     # Size modifier for the maximum carrying capacity.
     SIZE_MODIFIER = {
+      fine: 0.125,
+      diminutive: 0.25,
       tiny: 0.5,
+      small: 0.75,
       medium: 1.0,
       large: 2.0,
       huge: 4.0,
-      gargantuan: 8.0
+      gargantuan: 8.0,
+      colossal: 16.0
     }.freeze
     # Valid sizes.
-    SIZES = %w[tiny medium large huge gargantuan].freeze
+    SIZES = %w[fine diminutive tiny small medium large huge gargantuan colossal].freeze
 
     # This inventory's maximum carrying capacity, **in kilograms**.
     attr_reader :carrying_capacity
