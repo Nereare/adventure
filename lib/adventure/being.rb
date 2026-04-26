@@ -33,6 +33,8 @@ module Adventure
     attr_reader :size
     # Being's type.
     attr_reader :type
+    # Being's subtype, if any.
+    attr_reader :subtype
     # Whether or not this is a swarm of beings.
     attr_reader :swarm
     # Being's Hash of speeds, with five elements representing walk, burrow, climb, fly, and swim speeds -- the ones that don't apply set to `nil`.
@@ -185,9 +187,10 @@ module Adventure
                                   end
       @size                     = opts.key?(:size) ? opts[:size].strip.capitalize : nil
       @size                     = 'Medium' unless SIZES.include? @size
-      @type                     = opts.key?(:type) ? opts[:type].strip : nil
+      @type                     = opts.key?(:type) ? opts[:type].strip.capitalize : nil
       @type                     = 'Humanoid' unless TYPES.include? @type
-      @swarm                    = opts.key?(:swarm) ? !opts[:swarm].nil? : nil
+      @subtype                  = opts.key?(:subtype) ? opts[:subtype].strip.capitalize : ''
+      @swarm                    = opts.key?(:swarm) ? (opts[:swarm] == true) : nil
       @speed                    = if opts.key?(:speed)
                                     opts[:speed].to_h
                                   else
