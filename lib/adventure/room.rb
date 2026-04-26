@@ -27,7 +27,7 @@ module Adventure
       @name        = name
       @description = description
       # Other, optional, parameters
-      @lit         = opts.key?(:lit) ? opts[:lit] : true
+      @lit         = opts.key?(:lit) ? (opts[:lit] == true) : true
       @exits       = opts.key?(:exits) ? opts[:exits].to_h : {}
       @inventory   = opts.key?(:inventory) ? opts[:inventory] : Inventory.new
       # TODO: implement battles and/or monsters.
