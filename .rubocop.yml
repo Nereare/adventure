@@ -29,6 +29,8 @@ Layout/EndOfLine:
   EnforcedStyle: lf
 Lint/Void:
   Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
 RSpec/InstanceVariable:
   Enabled: false
 RSpec/MultipleExpectations:
