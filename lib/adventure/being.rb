@@ -14,6 +14,8 @@ module Adventure
     ABILITIES = %i[str dex con int wis cha].freeze
     # List of all valid skills.
     SKILLS = %i[acrobatics animal_handling arcana athletics deception history insight intimidation investigation medicine nature perception performance persuasion religion sleight_hand stealth survival].freeze
+    SIZES = %w[Fine Diminutive Tiny Small Medium Large Huge Gargantuan Colossal].freeze
+    TYPES = %w[Aberration Animal Beast Celestial Construct Dragon Elemental Fey Fiend Giant Humanoid Ooze Outsider Plant Undead Vermin].freeze
 
     # Being's name.
     attr_reader :name
@@ -181,8 +183,10 @@ module Adventure
                                   else
                                     proficiency_bonus(@levels)
                                   end
-      @size                     = opts.key?(:size) ? opts[:size].strip : nil
+      @size                     = opts.key?(:size) ? opts[:size].strip.capitalize : nil
+      @size                     = 'Medium' unless SIZES.include? @size
       @type                     = opts.key?(:type) ? opts[:type].strip : nil
+      @type                     = 'Humanoid' unless TYPES.include? @type
       @swarm                    = opts.key?(:swarm) ? !opts[:swarm].nil? : nil
       @speed                    = if opts.key?(:speed)
                                     opts[:speed].to_h
@@ -196,6 +200,7 @@ module Adventure
                                     }
                                   end
       @senses                   = opts.key?(:senses) ? opts[:senses].to_a : []
+      @senses.map! { |x| x.to_s }
       if opts.key? :rand_abilities
         prefs                   = opts.key?(:ability_preferences) ? opts[:ability_preferences].to_a : nil
         min                     = opts.key?(:ability_min) ? opts[:ability_min].to_i : 1
