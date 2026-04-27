@@ -190,7 +190,7 @@ module Adventure
       @type                     = opts.key?(:type) ? opts[:type].strip.capitalize : nil
       @type                     = 'Humanoid' unless TYPES.include? @type
       @subtype                  = opts.key?(:subtype) ? opts[:subtype].strip.capitalize : ''
-      @swarm                    = opts.key?(:swarm) ? (opts[:swarm] == true) : nil
+      @swarm                    = opts.key?(:swarm) ? (opts[:swarm] == true) : false
       @speed                    = if opts.key?(:speed)
                                     opts[:speed].to_h
                                   else
