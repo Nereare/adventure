@@ -11,6 +11,16 @@ RSpec.describe Adventure::Being do
       expect(described_class::SKILLS).to be_an(Array)
       expect(described_class::SKILLS).to all(be_a(Symbol))
     end
+
+    it 'has a list of valid sizes' do
+      expect(described_class::SIZES).to be_an(Array)
+      expect(described_class::SIZES).to all(be_a(String))
+    end
+
+    it 'has a list of valid creature types' do
+      expect(described_class::TYPES).to be_an(Array)
+      expect(described_class::TYPES).to all(be_a(String))
+    end
   end
 
   describe 'Being creation' do
@@ -99,6 +109,71 @@ RSpec.describe Adventure::Being do
       expect(rep).to be_a(Hash).or be_a(Numeric)
     end
 
-    #
+    it 'returns the being\'s proficiency bonus' do
+      expect(@being.proficiency).not_to be_nil
+      expect(@being.proficiency).to be_an(Integer)
+    end
+
+    it 'returns the being\'s size' do
+      expect(@being.size).not_to be_nil
+      expect(@being.size).to be_a(String)
+    end
+
+    it 'returns the being\'s type' do
+      expect(@being.type).not_to be_nil
+      expect(@being.type).to be_a(String)
+    end
+
+    it 'returns the being\'s subtype' do
+      expect(@being.subtype).not_to be_nil
+      expect(@being.subtype).to be_a(String)
+    end
+
+    it 'returns whether the being\'s a swarm' do
+      expect(@being.swarm).not_to be_nil
+      expect(@being.swarm).to be(true).or be(false)
+    end
+
+    it 'returns the being\'s speeds' do
+      expect(@being.speed).not_to be_nil
+      expect(@being.speed).to be_a(Hash)
+      expect(@being.speed.values).to all(be_a(Numeric))
+    end
+
+    it 'returns the being\'s Strength score' do
+      expect(@being.str).not_to be_nil
+      expect(@being.str).to be_an(Integer)
+    end
+
+    it 'returns the being\'s Dexterity score' do
+      expect(@being.dex).not_to be_nil
+      expect(@being.dex).to be_an(Integer)
+    end
+
+    it 'returns the being\'s Constitution score' do
+      expect(@being.con).not_to be_nil
+      expect(@being.con).to be_an(Integer)
+    end
+
+    it 'returns the being\'s Intelligence score' do
+      expect(@being.int).not_to be_nil
+      expect(@being.int).to be_an(Integer)
+    end
+
+    it 'returns the being\'s Wisdom score' do
+      expect(@being.wis).not_to be_nil
+      expect(@being.wis).to be_an(Integer)
+    end
+
+    it 'returns the being\'s Charisma score' do
+      expect(@being.cha).not_to be_nil
+      expect(@being.cha).to be_an(Integer)
+    end
+
+    it 'returns the being\'s spoken languages' do
+      expect(@being.languages).not_to be_nil
+      expect(@being.languages).to be_an(Array)
+      expect(@being.languages).to all(be_a(String))
+    end
   end
 end
