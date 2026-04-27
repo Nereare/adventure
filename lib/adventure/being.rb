@@ -81,7 +81,7 @@ module Adventure
     attr_reader :spell_footer
     # Being's Spellcasting array of spells -- empty by default.
     attr_reader :spell_list
-    # Being's array of traits.
+    # Being's Array of Traits.
     attr_reader :traits
     # Being's Actions' header.
     attr_reader :actions_header
