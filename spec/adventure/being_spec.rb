@@ -175,5 +175,161 @@ RSpec.describe Adventure::Being do
       expect(@being.languages).to be_an(Array)
       expect(@being.languages).to all(be_a(String))
     end
+
+    it 'returns the being\'s skill modifiers' do
+      expect(@being.skill(:stealth)).not_to be_nil
+      expect(@being.skill(:stealth)).to be_an(Integer)
+    end
+
+    it 'returns the being\'s roll for skill' do
+      expect(@being.roll_for_skill(:arcana)).not_to be_nil
+      expect(@being.roll_for_skill(:arcana)).to be_an(Integer)
+    end
+
+    it 'refuses invalid skills' do
+      expect { @being.skill(:foo) }.to raise_error(StandardError)
+    end
+
+    it 'returns the being\'s Armor Class' do
+      expect(@being.ac).not_to be_nil
+      expect(@being.ac).to be_an(Integer)
+    end
+
+    it 'returns the being\'s AC description' do
+      expect(@being.ac_desc).not_to be_nil
+      expect(@being.ac_desc).to be_a(String)
+    end
+
+    it 'returns the being\'s maximum Health Points' do
+      expect(@being.hp).not_to be_nil
+      expect(@being.hp).to be_an(Integer)
+    end
+
+    it 'returns the being\'s current HP' do
+      expect(@being.current_hp).not_to be_nil
+      expect(@being.current_hp).to be_an(Integer)
+    end
+
+    it 'returns the being\'s HP formula - i.e. its Hit Die notation' do
+      expect(@being.hp_formula).not_to be_nil
+      expect(@being.hp_formula).to be_a(String)
+    end
+
+    it 'returns the Being\'s Damage Vulnerabilities' do
+      expect(@being.dmg_vulnerabilities).not_to be_nil
+      expect(@being.dmg_vulnerabilities).to be_an(Array)
+    end
+
+    it 'returns the Being\'s Damage Resistances' do
+      expect(@being.dmg_resistances).not_to be_nil
+      expect(@being.dmg_resistances).to be_an(Array)
+    end
+
+    it 'returns the Being\'s Damage Immunities' do
+      expect(@being.dmg_immunities).not_to be_nil
+      expect(@being.dmg_immunities).to be_an(Array)
+    end
+
+    it 'returns the Being\'s Condition Immunities' do
+      expect(@being.condition_immunities).not_to be_nil
+      expect(@being.condition_immunities).to be_an(Array)
+    end
+
+    it 'returns the Being\'s Spellcasting block header' do
+      expect(@being.spell_header).not_to be_nil
+      expect(@being.spell_header).to be_a(String)
+    end
+
+    it 'returns the Being\'s Spellcasting block footer' do
+      expect(@being.spell_footer).not_to be_nil
+      expect(@being.spell_footer).to be_a(String)
+    end
+
+    it 'returns the Being\'s Spellcasting array of spells' do
+      expect(@being.spell_list).not_to be_nil
+      expect(@being.spell_list).to be_an(Array)
+    end
+
+    it 'returns the Being\'s Array of Traits' do
+      expect(@being.traits).not_to be_nil
+      expect(@being.traits).to be_an(Array)
+    end
+
+    it 'returns the Being\'s Actions\' header' do
+      expect(@being.actions_header).not_to be_nil
+      expect(@being.actions_header).to be_a(String)
+    end
+
+    it 'returns the Being\'s Array of Actions' do
+      expect(@being.actions_list).not_to be_nil
+      expect(@being.actions_list).to be_an(Array)
+    end
+
+    it 'returns the Being\'s Bonus Actions\' header' do
+      expect(@being.bonus_actions_header).not_to be_nil
+      expect(@being.bonus_actions_header).to be_a(String)
+    end
+
+    it 'returns the Being\'s Array of Bonus Actions' do
+      expect(@being.bonus_actions_list).not_to be_nil
+      expect(@being.bonus_actions_list).to be_an(Array)
+    end
+
+    it 'returns the Being\'s Reactions\' header' do
+      expect(@being.reactions_header).not_to be_nil
+      expect(@being.reactions_header).to be_a(String)
+    end
+
+    it 'returns the Being\'s Array of Reactions' do
+      expect(@being.reactions_list).not_to be_nil
+      expect(@being.reactions_list).to be_an(Array)
+    end
+
+    it 'returns the Being\'s Legendary Actions\' header' do
+      expect(@being.legendary_actions_header).not_to be_nil
+      expect(@being.legendary_actions_header).to be_a(String)
+    end
+
+    it 'returns the Being\'s number of Legendary Actions, as Integer' do
+      expect(@being.legendary_actions_count).not_to be_nil
+      expect(@being.legendary_actions_count).to be_an(Integer)
+    end
+
+    it 'returns the Being\'s Array of Legendary Actions' do
+      expect(@being.legendary_actions_list).not_to be_nil
+      expect(@being.legendary_actions_list).to be_an(Array)
+    end
+
+    it 'returns the Being\'s Mythic Actions\' header' do
+      expect(@being.mythic_actions_header).not_to be_nil
+      expect(@being.mythic_actions_header).to be_a(String)
+    end
+
+    it 'returns the Being\'s Array of Mythic Actions' do
+      expect(@being.mythic_actions_list).not_to be_nil
+      expect(@being.mythic_actions_list).to be_an(Array)
+    end
+
+    it 'returns the Being\'s list of `Item`s' do
+      expect(@being.inventory).not_to be_nil
+      expect(@being.inventory).to be_an(Adventure::Inventory)
+    end
+
+    it 'returns the Being\'s `Purse`' do
+      expect(@being.purse).not_to be_nil
+      expect(@being.purse).to be_an(Adventure::Purse)
+    end
+
+    it 'returns the Being\'s flavor description/informations' do
+      expect(@being.description).not_to be_nil
+      expect(@being.description).to be_a(String)
+    end
+
+    it 'returns the Being\'s Array of environments' do
+      expect(@being.environment).not_to be_nil
+      expect(@being.environment).to be_an(Array)
+    end
+
+    # TODO: continue tests here from ::damage...
   end
 end
