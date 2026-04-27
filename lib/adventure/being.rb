@@ -218,6 +218,7 @@ module Adventure
         @cha                    = opts.key?(:cha) ? opts[:@cha].to_i : 10
       end
       @languages                = opts.key?(:languages) ? opts[:languages].to_a : []
+      @languages.map! { |x| x.to_s }
       @saves                    = if opts.key? :saves
                                     opts[:saves].to_a.uniq
                                   else
