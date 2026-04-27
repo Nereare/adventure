@@ -265,7 +265,7 @@ module Adventure
       @inventory                = Inventory.new unless @inventory.is_a? Inventory
       @purse                    = opts.key?(:purse) ? opts[:purse] : []
       @purse                    = Purse.new unless @purse.is_a? Purse
-      @description              = opts.key?(:description) ? opts[:description].strip : nil
+      @description              = opts.key?(:description) ? opts[:description].strip : ''
       @environment              = opts.key?(:environment) ? opts[:environment].to_a : []
     end
 
