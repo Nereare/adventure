@@ -458,11 +458,13 @@ module Adventure
     # If the damage is greater than the current HP, the
     # latter is normalized to `0`, instead.
     #
-    # @param  amount  [Integer]   The amount of damage to be dealt, negative values are accepted, but are **not** counted as healing --- use {heal} instead.
+    # @param  amount    [Integer]   The amount of damage to be dealt, negative values are accepted, but are **not** counted as healing --- use {heal} instead.
+    # @return           [Integer]   The new current HP.
     def damage(amount)
       amount       = amount.to_i.abs
       @current_hp -= amount
-      @current_hp  = @current_hp.negative? ? 0 : @current_hp
+      @current_hp  = [@current_hp, 0].max
+      @current_hp
     end
 
     # Heal this Being by the given amount, modifying the
@@ -472,11 +474,13 @@ module Adventure
     # HP, the former is normalized to the maximun HP,
     # instead.
     #
-    # @param  amount  [Integer]   The amount to heal the Being by, negative values are accepted, but are **not** counted as damage --- use {damage} instead.
+    # @param  amount    [Integer]   The amount to heal the Being by, negative values are accepted, but are **not** counted as damage --- use {damage} instead.
+    # @return           [Integer]   The new current HP.
     def heal(amount)
       amount       = amount.to_i.abs
       @current_hp += amount
-      @current_hp  = [@current_hp > @hp].min
+      @current_hp  = [@current_hp, @hp].min
+      @current_hp
     end
 
     # Whether this Being is dead or not.
