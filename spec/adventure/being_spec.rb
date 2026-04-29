@@ -330,6 +330,31 @@ RSpec.describe Adventure::Being do
       expect(@being.environment).to be_an(Array)
     end
 
-    # TODO: continue tests here from ::damage...
+    it 'can take damage' do
+      expect(@being).to respond_to(:damage)
+    end
+
+    it 'loses HP when taking damage' do
+      expect { @being.damage(10) }.to change { @being.current_hp }.from(140).to(130)
+    end
+
+    it 'can be healed' do
+      expect(@being).to respond_to(:heal)
+    end
+
+    it 'regains HP when being healed' do
+      @being.damage(10) # Remove 10hp first
+      expect { @being.heal(10) }.to change { @being.current_hp }.from(130).to(140)
+    end
+
+    it 'returns whether the Being is alive' do
+      expect(@being.alive?).not_to be_nil
+      expect(@being.alive?).to be(true).or be(false)
+    end
+
+    it 'returns whether the Being is dead' do
+      expect(@being.dead?).not_to be_nil
+      expect(@being.dead?).to be(true).or be(false)
+    end
   end
 end
