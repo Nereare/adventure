@@ -3,8 +3,8 @@
 require_relative 'room'
 
 module Adventure
-  # Gem's name.
-  class Game
+  # Represents the world where the game takes place.
+  class World
     # The adventure's title / name.
     attr_reader :title
     # The adventure's subtitle / flavor text.
@@ -41,6 +41,6 @@ module Adventure
       @global_vars    = opts.key?(:global_vars) ? opts[:global_vars].to_h : {}
     end
 
-    # TODO: continue Adventure entity definitions.
+    # TODO: continue World entity definitions.
   end
 end
