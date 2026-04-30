@@ -4,12 +4,11 @@ require 'tty-exit'
 require 'tty-option'
 
 require_relative 'adventure/being'
-require_relative 'adventure/game'
 require_relative 'adventure/inventory'
 require_relative 'adventure/item'
 require_relative 'adventure/meta'
-# require_relative 'adventure/loop'
 require_relative 'adventure/purse'
+require_relative 'adventure/world'
 
 # Gem's main module.
 module Adventure
