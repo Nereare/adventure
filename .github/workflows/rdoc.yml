@@ -18,10 +18,10 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6.0.2
 
     - name: Set up Ruby 3.2
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@v1.306.0
       with:
         ruby-version: '3.2'
 
@@ -32,10 +32,10 @@ jobs:
       run: yard
 
     - name: Setup Pages
-      uses: actions/configure-pages@v5
+      uses: actions/configure-pages@v6.0.0
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-pages-artifact@v5.0.0
       with:
         path: './doc'
 
@@ -53,4 +53,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.0
