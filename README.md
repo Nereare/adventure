@@ -5,7 +5,7 @@
 [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-3.0-5e0d73?logo=contributorcovenant&logoColor=ffffff)](CODE-OF-CONDUCT.md)
 [![Ruby Style Guide](https://img.shields.io/badge/Code%20Style-RuboCop-brightgree?logo=rubocop&logoColor=ffffff&color=cc342d)](https://github.com/rubocop/rubocop)
 
-![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/Nereare/adventure?logo=librariesdotio&logoColor=ffffff&color=%23337AB7)
+[![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/Nereare/adventure?logo=librariesdotio&logoColor=ffffff&color=%23337AB7)](https://libraries.io/github/Nereare/adventure)
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Nereare/adventure/gem-tests.yml?logo=githubactions&logoColor=ffffff&label=Ruby%20Tests)](https://github.com/Nereare/adventure/actions/workflows/gem-tests.yml)
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Nereare/adventure/rdoc.yml?logo=rubygems&logoColor=ffffff&label=RDoc)](https://nereare.github.io/adventure/)
 
