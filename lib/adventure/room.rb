@@ -19,7 +19,7 @@ module Adventure
     # @param    description   [String]   The room's long description.
     # @param    opts          [Hash]     A list of optional parameters.
     # @option   opts          [Boolean]     lit                 Whether or not this room is alight, `true` by default.
-    # @option   opts          [Hash]        exits               A Hash of exits (other {Room}s), keyed by direction's Symbol.
+    # @option   opts          [Hash]        exits               A Hash of exits (the index to other {Room}s), keyed by direction's Symbol.
     # @option   opts          [Inventory]   contents            The room's {Item} contents, empty {Inventory} by default.
     # @see DIRECTIONS
     def initialize(name, description, **opts)
@@ -98,8 +98,8 @@ module Adventure
 
     # Returns the corresponding exit.
     #
-    # @param    direction     [Symbol,String]   The direction to which fetch the exit. Either a one-word cardinal direction, or a corresponding Symbol.
-    # @return                 [Room, nil]       Either the corresponding exit, or `nil` if no exit to that direction.
+    # @param    direction     [Symbol,String]       The direction to which fetch the exit. Either a one-word cardinal direction, or a corresponding Symbol.
+    # @return                 [Integer,Symbol,nil]  Either the corresponding exit, or `nil` if no exit to that direction.
     def exit(direction)
       direction = direction.downcase.to_sym
       @exits[direction.to_sym]
@@ -107,70 +107,70 @@ module Adventure
 
     # Shorthand for {exit} with `:north` as direction.
     #
-    # @return                 [Room, nil]       Either the north exit, or `nil` if no exit to that direction.
+    # @return                 [Integer,Symbol,nil]  Either the north exit, or `nil` if no exit to that direction.
     def north
       exit(:north)
     end
 
     # Shorthand for {exit} with `:northeast` as direction.
     #
-    # @return                 [Room, nil]       Either the northeast exit, or `nil` if no exit to that direction.
+    # @return                 [Integer,Symbol,nil]  Either the northeast exit, or `nil` if no exit to that direction.
     def northeast
       exit(:northeast)
     end
 
     # Shorthand for {exit} with `:east` as direction.
     #
-    # @return                 [Room, nil]       Either the east exit, or `nil` if no exit to that direction.
+    # @return                 [Integer,Symbol,nil]  Either the east exit, or `nil` if no exit to that direction.
     def east
       exit(:east)
     end
 
     # Shorthand for {exit} with `:southeast` as direction.
     #
-    # @return                 [Room, nil]       Either the southeast exit, or `nil` if no exit to that direction.
+    # @return                 [Integer,Symbol,nil]  Either the southeast exit, or `nil` if no exit to that direction.
     def southeast
       exit(:southeast)
     end
 
     # Shorthand for {exit} with `:south` as direction.
     #
-    # @return                 [Room, nil]       Either the south exit, or `nil` if no exit to that direction.
+    # @return                 [Integer,Symbol,nil]  Either the south exit, or `nil` if no exit to that direction.
     def south
       exit(:south)
     end
 
     # Shorthand for {exit} with `:southwest` as direction.
     #
-    # @return                 [Room, nil]       Either the southwest exit, or `nil` if no exit to that direction.
+    # @return                 [Integer,Symbol,nil]  Either the southwest exit, or `nil` if no exit to that direction.
     def southwest
       exit(:southwest)
     end
 
     # Shorthand for {exit} with `:west` as direction.
     #
-    # @return                 [Room, nil]       Either the west exit, or `nil` if no exit to that direction.
+    # @return                 [Integer,Symbol,nil]  Either the west exit, or `nil` if no exit to that direction.
     def west
       exit(:west)
     end
 
     # Shorthand for {exit} with `:northwest` as direction.
     #
-    # @return                 [Room, nil]       Either the northwest exit, or `nil` if no exit to that direction.
+    # @return                 [Integer,Symbol,nil]  Either the northwest exit, or `nil` if no exit to that direction.
     def northwest
       exit(:northwest)
     end
 
     # Shorthand for {exit} with `:up` as direction.
     #
-    # @return                 [Room, nil]       Either the up exit, or `nil` if no exit to that direction.
+    # @return                 [Integer,Symbol,nil]  Either the up exit, or `nil` if no exit to that direction.
     def up
       exit(:up)
     end
 
     # Shorthand for {exit} with `:down` as direction.
     #
-    # @return                 [Room, nil]       Either the down exit, or `nil` if no exit to that direction.
+    # @return                 [Integer,Symbol,nil]  Either the down exit, or `nil` if no exit to that direction.
     def down
       exit(:down)
     end
