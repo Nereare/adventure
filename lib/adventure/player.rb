@@ -63,11 +63,12 @@ module Adventure
       @level
     end
 
-    # Add a new class to the player.
+    # Add a new class to the player and levels them up.
     #
-    # @return         [Array<String>]  The player's list of classes.
+    # @return         [Array<String>]  The player's new list of classes.
     def new_class(new_class)
       @classes.push new_class.strip.capitalize
+      level_up
       @classes
     end
   end
