@@ -59,7 +59,7 @@ module Adventure
     #
     # @return         [Integer]        The player's new total level.
     def level_up
-      @level =+ 1
+      @level += 1
       @level
     end
 
