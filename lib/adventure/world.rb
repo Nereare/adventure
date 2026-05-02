@@ -5,7 +5,7 @@ require 'psych'
 require_relative 'being'
 require_relative 'inventory'
 require_relative 'item'
-# require_relative 'player'
+require_relative 'player'
 require_relative 'purse'
 require_relative 'room'
 
@@ -44,6 +44,8 @@ module Adventure
     # @option opts    [Hash]            atlas           An Array of all the rooms for the adventure.
     # @option opts    [Integer,Symbol]  current_room    The index of the game's current Room, initially the starting Room.
     # @option opts    [Hash]            global_vars     A Hash of variables to be used by the adventure --- currently unused, kept as placeholder.
+    #
+    # @raise          [StandardError]                   Throws an error if the given player is not a valid {Player} object.
     def initialize(**opts)
       @title        = opts.key?(:title) ? opts[:title].trim : ''
       @subtitle     = opts.key?(:subtitle) ? opts[:subtitle].trim : nil
@@ -55,6 +57,8 @@ module Adventure
       @atlas        = opts.key?(:atlas) ? opts[:atlas].to_a : []
       @current_room = opts.key?(:current_room) ? opts[:current_room].to_i : 0
       @global_vars  = opts.key?(:global_vars) ? opts[:global_vars].to_h : {}
+
+      raise StandardError, 'Player is not a valid object.' unless @player.is_a? Player
     end
 
     # Class method

@@ -7,6 +7,7 @@ require_relative 'adventure/being'
 require_relative 'adventure/inventory'
 require_relative 'adventure/item'
 require_relative 'adventure/meta'
+require_relative 'adventure/player'
 require_relative 'adventure/purse'
 require_relative 'adventure/world'
 
