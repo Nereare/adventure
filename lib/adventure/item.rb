@@ -3,10 +3,6 @@
 module Adventure
   # Represents an ingame item.
   class Item
-    # Item's name.
-    attr_reader :name
-    # Full description of the item, in GFM.
-    attr_reader :description
     # Item's type, either one of {Adventure::Item::Type}
     # or a String.
     attr_reader :type
@@ -19,6 +15,8 @@ module Adventure
     # Whether the item requires attunement or not. If
     # a string, it will be prepended by *"Requires attunement "*.
     attr_reader :attunement
+    # Whether the item is identified (known) or not.
+    attr_reader :known
     # The value of the item, a Float representing
     # such value in gold pieces, or `nil` when unset.
     attr_accessor :value
@@ -203,19 +201,24 @@ module Adventure
     # @option   options  [DamageType]      :dmg_type        Item's type of damage.
     # @option   options  [Boolean]         :magic           Whether or not the item is of magical nature.
     # @option   options  [Boolean, String] :attunement      Whether the item requires attunement or not. If a string, it will be prepended by *"Requires attunement "*.
+    # @option   options  [Boolean]         :known           Whether or not the object is a known one. Defaults to `true`.
+    # @option   options  [String]          :unknown_name    The name to be shown, if the object is unkown.
     # @option   options  [Array<Property>] :properties      An array of properties.
     def initialize(name, description, type, **options)
       # Mandatory parameters
-      @name        = name.strip
-      @description = description.strip
-      @type        = type
+      @name            = name.strip
+      @description     = description.strip
+      @type            = type
       # Optional parameters
-      @rarity        = options.key?(:rarity) ? options[:rarity] : nil
-      @value         = options.key?(:value) ? options[:value].to_f : 0.0
-      @weight        = options.key?(:weight) ? options[:weight].to_f : 0.0
-      @source        = options.key?(:source) ? options[:source] : nil
-      @ac            = options.key?(:ac) ? options[:ac] : nil
-      @max_dex_bonus = options.key?(:max_dex_bonus) ? options[:max_dex_bonus].to_i : 1_000
+      # > General properties.
+      @rarity          = options.key?(:rarity) ? options[:rarity] : nil
+      @value           = options.key?(:value) ? options[:value].to_f : 0.0
+      @weight          = options.key?(:weight) ? options[:weight].to_f : 0.0
+      @source          = options.key?(:source) ? options[:source] : nil
+      # > Armor properties.
+      @ac              = options.key?(:ac) ? options[:ac] : nil
+      @max_dex_bonus   = options.key?(:max_dex_bonus) ? options[:max_dex_bonus].to_i : 1_000
+      # > Weapon properties.
       if options.key?(:dmg_notation) && !options[:dmg_notation].strip.empty?
         @dmg_die_count, @dmg_die_type, @dmg_mod = parse_damage_notation(options[:dmg_notation].strip)
       else
@@ -223,16 +226,50 @@ module Adventure
         @dmg_die_type  = options.key?(:dmg_die_type) ? options[:dmg_die_type].to_i : 0
         @dmg_mod       = options.key?(:dmg_mod) ? options[:dmg_mod].to_i : 0
       end
-      @dmg_type      = options.key?(:dmg_type) ? options[:dmg_type] : nil
-      @magic         = options.key?(:magic) || false
-      @rarity        = Rarity::UNKNOWN if @magic && @rarity.nil?
+      @dmg_type        = options.key?(:dmg_type) ? options[:dmg_type] : nil
+      # > Magic properties.
+      @magic           = options.key?(:magic) || false
+      @rarity          = Rarity::UNKNOWN if @magic && @rarity.nil?
       if options.key?(:attunement)
-        @attunement  = 'Requires attunement'
-        @attunement += " #{options[:attunement].strip}" if options[:attunement].is_a?(String)
+        @attunement    = 'Requires attunement'
+        @attunement   += " #{options[:attunement].strip}" if options[:attunement].is_a?(String)
       else
-        @attunement  = ''
+        @attunement    = ''
       end
-      @properties = options.key?(:properties) ? options[:properties] : nil
+      # > Unkown properties.
+      @known           = options.key?(:known) ? (options[:known] == true) : true
+      @unknown_name    = options.key?(:unknown_name) ? options[:unknown_name].strip : "Unknown #{@type}"
+      @unknown_desc    = options.key?(:unknown_desc) ? options[:unknown_desc].strip : "Unknown #{@type}."
+      # > Misc properties.
+      @properties      = options.key?(:properties) ? options[:properties] : nil
+    end
+
+    # Return a String with the item's name, or its placeholder if unknown.
+    #
+    # @return         [String]         A String with the item's name, or its placeholder if unknown.
+    def name
+      @known ? @name : @unknown_name
+    end
+
+    # An alias for {::name}.
+    #
+    # @return         [String]         A String with the item's name, or its placeholder if unknown.
+    def to_s
+      name
+    end
+
+    # Return a Float with the item's weight.
+    #
+    # @return         [Float]          A String with the item's weight.
+    def to_f
+      @weight
+    end
+
+    # Return a String with the item's description, or its placeholder if unknown.
+    #
+    # @return         [String]         A String with the item's description, or its placeholder if unknown.
+    def description
+      @known ? @description : @unknown_desc
     end
 
     # Return the default RPG notation for damage calculation.
@@ -316,6 +353,11 @@ module Adventure
     # @return   [Float]                     The value of the item.
     def price
       @value
+    end
+
+    # Set the {Item} as known.
+    def identify
+      @known = true
     end
 
     private

@@ -143,4 +143,36 @@ RSpec.describe Adventure::Item do
       expect(@magic_item.attunement).to be_a(String)
     end
   end
+
+  describe 'Unknown item methods' do
+    before do
+      @unknown_item = described_class.new(
+        'Unknown Item',
+        'Unknown item description.',
+        Adventure::Item::Type::WONDROUS,
+        price: 1_150.0,
+        weight: 3.5,
+        magic: true,
+        rarity: Adventure::Item::Rarity::RARE,
+        known: false
+      )
+    end
+
+    it 'can be unidentified' do
+      expect(@unknown_item.known).not_to be_nil
+      expect(@unknown_item.known).to be(false)
+    end
+
+    it 'has a placeholder name' do
+      expect(@unknown_item.name).to eq('Unknown Wondrous Item')
+    end
+
+    it 'has a placeholder description' do
+      expect(@unknown_item.description).to eq('Unknown Wondrous Item.')
+    end
+
+    it 'can become identified' do
+      expect { @unknown_item.identify }.to change { @unknown_item.known }.from(false).to(true)
+    end
+  end
 end
