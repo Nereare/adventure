@@ -30,30 +30,30 @@ RSpec.describe Adventure::Being do
 
     it 'instantializes a complex being' do
       expect(described_class.new(
-        'Long Test Creature',
-        cr: 18,
-        size: 'Large',
-        type: 'Humanoid',
-        speed: {
-                  walk: 45,
-                  burrow: 0,
-                  climb: 0,
-                  fly: 60,
-                  swim: 30
-                },
-        senses: ['truesight'],
-        rand_abilities: true,
-        ability_min: 18,
-        ability_max: 30,
-        saves: %i[con int wis cha],
-        skills: %i[arcana history investigation insight stealth],
-        skills_expertise: %i[arcana history insight],
-        ac: 26,
-        ac_desc: 'natural armor',
-        hp: 140,
-        hp_formula: '18d8+60',
-        description: 'Long test creature description.'
-      )).to be_instance_of(described_class)
+               'Long Test Creature',
+               cr: 18,
+               size: 'Large',
+               type: 'Humanoid',
+               speed: {
+                 walk: 45,
+                 burrow: 0,
+                 climb: 0,
+                 fly: 60,
+                 swim: 30
+               },
+               senses: ['truesight'],
+               rand_abilities: true,
+               ability_min: 18,
+               ability_max: 30,
+               saves: %i[con int wis cha],
+               skills: %i[arcana history investigation insight stealth],
+               skills_expertise: %i[arcana history insight],
+               ac: 26,
+               ac_desc: 'natural armor',
+               hp: 140,
+               hp_formula: '18d8+60',
+               description: 'Long test creature description.'
+             )).to be_instance_of(described_class)
     end
   end
 
@@ -65,12 +65,12 @@ RSpec.describe Adventure::Being do
         size: 'Large',
         type: 'Humanoid',
         speed: {
-                  walk: 45,
-                  burrow: 0,
-                  climb: 0,
-                  fly: 60,
-                  swim: 30
-                },
+          walk: 45,
+          burrow: 0,
+          climb: 0,
+          fly: 60,
+          swim: 30
+        },
         senses: ['truesight'],
         rand_abilities: true,
         ability_min: 18,

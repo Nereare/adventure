@@ -12,13 +12,13 @@ RSpec.describe Adventure::Room do
 
     it 'instantializes a room with exits' do
       expect(described_class.new(
-        'Test Room 3',
-        'Test room 3 description.',
-        exits: {
-          north: described_class.new('North Exit', 'North exit description'),
-          east: described_class.new('East Exit', 'East exit description.')
-        }
-      )).to be_instance_of(described_class)
+               'Test Room 3',
+               'Test room 3 description.',
+               exits: {
+                 north: described_class.new('North Exit', 'North exit description'),
+                 east: described_class.new('East Exit', 'East exit description.')
+               }
+             )).to be_instance_of(described_class)
     end
   end
 
@@ -71,7 +71,7 @@ RSpec.describe Adventure::Room do
     it 'returns a list of the room\'s exits' do
       expect(@room.exits).not_to be_nil
       expect(@room.exits).to be_a(Hash)
-      expect(@room.exits.values).to all(be_an(Integer).or be_a(Symbol))
+      expect(@room.exits.values).to all(be_an(Integer).or(be_a(Symbol)))
     end
   end
 end

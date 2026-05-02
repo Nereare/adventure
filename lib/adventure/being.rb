@@ -203,7 +203,7 @@ module Adventure
                                     }
                                   end
       @senses                   = opts.key?(:senses) ? opts[:senses].to_a : []
-      @senses.map! { |x| x.to_s }
+      @senses.map!(&:to_s)
       if opts.key? :rand_abilities
         prefs                   = opts.key?(:ability_preferences) ? opts[:ability_preferences].to_a : nil
         min                     = opts.key?(:ability_min) ? opts[:ability_min].to_i : 1
@@ -217,13 +217,13 @@ module Adventure
         @wis                    = opts.key?(:wis) ? opts[:@wis].to_i : 10
         @cha                    = opts.key?(:cha) ? opts[:@cha].to_i : 10
       end
-      @languages                = opts.key?(:languages) ? opts[:languages].to_a : []
-      @languages.map! { |x| x.to_s }
-      @saves                    = if opts.key? :saves
-                                    opts[:saves].to_a.uniq
-                                  else
-                                    []
-                                  end
+      @languages = opts.key?(:languages) ? opts[:languages].to_a : []
+      @languages.map!(&:to_s)
+      @saves = if opts.key? :saves
+                 opts[:saves].to_a.uniq
+               else
+                 []
+               end
       @saves.select! { |save| ABILITIES.include? save }
       @skills                   = if opts.key? :skills
                                     opts[:skills].to_a.uniq

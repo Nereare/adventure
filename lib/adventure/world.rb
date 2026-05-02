@@ -78,6 +78,7 @@ module Adventure
         aliases: true
       )
       raise StandardError, 'Invalid input.' if yaml.nil?
+
       yaml
     end
 
