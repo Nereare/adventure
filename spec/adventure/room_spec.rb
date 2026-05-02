@@ -32,7 +32,7 @@ RSpec.describe Adventure::Room do
           north: 2,
           east: :east_room
         },
-        contents: Adventure::Inventory.new(
+        inventory: Adventure::Inventory.new(
           Adventure::Item.new('Item 1', 'Item 1 description.', Adventure::Item::Type::TOOL),
           Adventure::Item.new('Item 2', 'Item 2 description.', Adventure::Item::Type::TOOL)
         )
@@ -59,6 +59,10 @@ RSpec.describe Adventure::Room do
     it 'returns the room\'s contents as an Inventory object' do
       expect(@room.inventory).not_to be_nil
       expect(@room.inventory).to be_an(Adventure::Inventory)
+    end
+
+    it 'can have its contents fetched' do
+      expect { @room.inventory.remove('1') }.to change { @room.inventory.to_i }.from(2).to(1)
     end
 
     it 'returns the room\'s specific exit' do
