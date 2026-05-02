@@ -29,8 +29,8 @@ RSpec.describe Adventure::Room do
         'Complex test room description.',
         lit: true,
         exits: {
-          north: described_class.new('North Exit', 'North exit description'),
-          east: described_class.new('East Exit', 'East exit description.')
+          north: 2,
+          east: :east_room
         },
         contents: Adventure::Inventory.new(
           Adventure::Item.new('Item 1', 'Item 1 description.', Adventure::Item::Type::TOOL),
@@ -63,15 +63,15 @@ RSpec.describe Adventure::Room do
 
     it 'returns the room\'s specific exit' do
       expect(@room.exit(:north)).not_to be_nil
-      expect(@room.exit(:north)).to be_an(Adventure::Room)
+      expect(@room.exit(:north)).to be_an(Integer)
       expect(@room.east).not_to be_nil
-      expect(@room.east).to be_an(Adventure::Room)
+      expect(@room.east).to be_a(Symbol)
     end
 
     it 'returns a list of the room\'s exits' do
       expect(@room.exits).not_to be_nil
       expect(@room.exits).to be_a(Hash)
-      expect(@room.exits.values).to all(be_an(Adventure::Room))
+      expect(@room.exits.values).to all(be_an(Integer).or be_a(Symbol))
     end
   end
 end
