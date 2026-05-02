@@ -21,20 +21,20 @@ module Adventure
     # Create a new instance of Player.
     #
     # @param    name       [String]                 The player's name.
-    # @param    level      [Integer]                The player's total level.
     # @param    classes    [Array<String>]          The player's list of classes, as an Array of Strings.
     # @param    species    [String]                 The player's species.
     # @param    opts       [Hash]                   A list of optional parameters.
+    # @param    opts       [Integer]    :level      The player's total level. Defaults to `1`.
     # @option   opts       [Purse]      :purse      The player's {Purse}. Will be set to an empty {Purse} if unset.
     # @option   opts       [Inventory]  :inventory  The player's {Inventory}. Will be set to an empty {Inventory} if unset.
-    def initialize(name, level, classes, species, gender, **opts)
+    def initialize(name, classes, species, gender, **opts)
       # Mandatory parameters.
       @name      = name.strip
-      @level     = level.to_i
       @classes   = classes.to_a.map(&:strip).map(&:capitalize)
       @species   = species.strip.capitalize
       @gender    = gender.strip.capitalize
       # Optional parameters.
+      @level     = opts.key?(:level) ? opts[:level].to_i : 1
       @purse     = opts.key?(:purse) ? opts[:purse] : nil
       @purse     = Purse.new unless @purse.is_a? Purse
       @inventory = opts.key?(:inventory) ? opts[:inventory] : nil
