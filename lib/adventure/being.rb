@@ -14,7 +14,9 @@ module Adventure
     ABILITIES = %i[str dex con int wis cha].freeze
     # List of all valid skills.
     SKILLS = %i[acrobatics animal_handling arcana athletics deception history insight intimidation investigation medicine nature perception performance persuasion religion sleight_hand stealth survival].freeze
+    # List of all valid sizes.
     SIZES = %w[Fine Diminutive Tiny Small Medium Large Huge Gargantuan Colossal].freeze
+    # List of canonically valid creature types.
     TYPES = %w[Aberration Animal Beast Celestial Construct Dragon Elemental Fey Fiend Giant Humanoid Ooze Outsider Plant Undead Vermin].freeze
 
     # @!attribute [r]              name

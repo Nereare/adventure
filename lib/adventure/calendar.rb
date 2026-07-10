@@ -5,7 +5,9 @@ module Adventure
   #
   # @deprecated   Maybe it will be implemented in the future.
   class Calendar
+    # List of ten week days with the most generic names.
     DEFAULT_WEEKDAYS = %w[Firstday Secondday Thirdday Fourthday Fifthday Sixthday Seventhday Eighthday Ninthday Tenthday].freeze
+    # List of ten months with the most generic names.
     DEFAULT_MONTHS = {
       'Month One' => 28,
       'Month Two' => 28,
@@ -18,6 +20,7 @@ module Adventure
       'Month Nine' => 28,
       'Month Ten' => 28
     }.freeze
+    # Empty list of epochs.
     DEFAULT_EPOCHS = {
       name: '',
       abbreviation: '',
@@ -93,9 +96,10 @@ module Adventure
 
     private
 
+    # Filler descripton.
     def parse_calendar(_current_epoch, _current_year, _current_month, _current_day)
       @epochs.each_with_index do |epoch, epoch_index|
-        #
+        # Foo bar
       end
     end
 
