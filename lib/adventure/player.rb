@@ -24,7 +24,7 @@ module Adventure
     # @param    classes    [Array<String>]          The player's list of classes, as an Array of Strings.
     # @param    species    [String]                 The player's species.
     # @param    opts       [Hash]                   A list of optional parameters.
-    # @param    opts       [Integer]    :level      The player's total level. Defaults to `1`.
+    # @option   opts       [Integer]    :level      The player's total level. Defaults to `1`.
     # @option   opts       [Purse]      :purse      The player's {Purse}. Will be set to an empty {Purse} if unset.
     # @option   opts       [Inventory]  :inventory  The player's {Inventory}. Will be set to an empty {Inventory} if unset.
     def initialize(name, classes, species, gender, **opts)
