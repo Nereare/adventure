@@ -2,8 +2,10 @@
 
 module Adventure
   # Represents the world's time system.
+  #
+  # @deprecated   Maybe it will be implemented in the future.
   class Calendar
-    DEFAULT_WEEKDAYS = ['Firstday', 'Secondday', 'Thirdday', 'Fourthday', 'Fifthday', 'Sixthday', 'Seventhday', 'Eighthday', 'Ninthday', 'Tenthday'].freeze
+    DEFAULT_WEEKDAYS = %w[Firstday Secondday Thirdday Fourthday Fifthday Sixthday Seventhday Eighthday Ninthday Tenthday].freeze
     DEFAULT_MONTHS = {
       'Month One' => 28,
       'Month Two' => 28,
@@ -86,7 +88,7 @@ module Adventure
 
     private
 
-    def parse_calendar(current_epoch, current_year, current_month, current_day)
+    def parse_calendar(_current_epoch, _current_year, _current_month, _current_day)
       @epochs.each_with_index do |epoch, epoch_index|
         #
       end
@@ -95,14 +97,14 @@ module Adventure
     # Set calendar variables as Gregorian.
     def gregorian
       @hours_per_day = 24
-      @weekdays = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday'
+      @weekdays = %w[
+        Sunday
+        Monday
+        Tuesday
+        Wednesday
+        Thursday
+        Friday
+        Saturday
       ]
       @months = {
         'January' => 31,
@@ -122,9 +124,9 @@ module Adventure
         -1 => {
           name: 'Before Common Era',
           abbreviation: 'BCE',
-          days: 4000*365.25
+          days: 4000 * 365.25
         },
-        0  => {
+        0 => {
           name: 'Common Era',
           abbreviation: 'CE',
           days: nil
