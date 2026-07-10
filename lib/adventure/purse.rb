@@ -12,13 +12,17 @@ module Adventure
   # - Gold Pieces (`gp`); and
   # - Platinum Pieces (`1pp` = `10gp`).
   class Purse
-    # Copper pieces (`cp`).
+    # @!attribute [r]            cp
+    #   @return   [Integer]      Copper pieces (`cp`).
     attr_reader :cp
-    # Silver pieces (`sp`).
+    # @!attribute [r]            sp
+    #   @return   [Integer]      Silver pieces (`sp`).
     attr_reader :sp
-    # Gold pieces (`gp`).
+    # @!attribute [r]            gp
+    #   @return   [Integer]      Gold pieces (`gp`).
     attr_reader :gp
-    # Platinum pieces (`pp`).
+    # @!attribute [r]            pp
+    #   @return   [Integer]      Platinum pieces (`pp`).
     attr_reader :pp
 
     # Create a new instance of Purse.

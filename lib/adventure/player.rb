@@ -3,19 +3,26 @@
 module Adventure
   # Represents the game player.
   class Player
-    # The player's name.
+    # @!attribute [r]              name
+    #   @return   [String]         The player's name.
     attr_reader :name
-    # The player's total level.
+    # @!attribute [r]              level
+    #   @return   [Integer]        The player's total level.
     attr_reader :level
-    # The player's classes.
+    # @!attribute [r]              classes
+    #   @return   [Array<String>]  The player's classes.
     attr_reader :classes
-    # The player's species.
+    # @!attribute [r]              species
+    #   @return   [String]         The player's species.
     attr_reader :species
-    # The player's gender.
+    # @!attribute [r]              gender
+    #   @return   [String]         The player's gender.
     attr_reader :gender
-    # The player's {Purse}.
+    # @!attribute [r]              purse
+    #   @return   [{Purse}]        The player's {Purse}.
     attr_reader :purse
-    # The player's {Inventory}.
+    # @!attribute [r]              inventory
+    #   @return   [{Inventory}]    The player's {Inventory}.
     attr_reader :inventory
 
     # Create a new instance of Player.

@@ -24,15 +24,20 @@ module Adventure
       days: nil
     }.freeze
 
-    # How many hours a day have.
+    # @!attribute [r]              hours_per_day
+    #   @return   [Integer]        How many hours a day have.
     attr_reader :hours_per_day
-    # The list of weekdays' names.
+    # @!attribute [r]              weekdays
+    #   @return   [Array<String>]  The list of weekdays' names.
     attr_reader :weekdays
-    # The list of months's names.
+    # @!attribute [r]              months
+    #   @return   [Hash]           The list of months's names.
     attr_reader :months
-    # The list of epochs' names and abbreviation.
+    # @!attribute [r]              epochs
+    #   @return   [Hash]           The list of epochs' names and abbreviation.
     attr_reader :epochs
-    # An Array with each day since year 1 as a Hash with day, month, year, and weekday.
+    # @!attribute [r]              calendar
+    #   @return   [Array]          An Array with each day since year 1 as a Hash with day, month, year, and weekday.
     attr_reader :calendar
 
     # Create a new instance of Calendar.

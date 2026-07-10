@@ -8,9 +8,11 @@ module Adventure
     # List of valid directions.
     DIRECTIONS = %i[north northeast east southeast south southwest west northwest up down].freeze
 
-    # Room's exit.
+    # @!attribute [r]            exits
+    #   @return   [Hash]         Room's exit.
     attr_reader :exits
-    # Room's {Inventory}.
+    # @!attribute [r]            inventory
+    #   @return   [{Inventory}]  Room's {Inventory}.
     attr_reader :inventory
 
     # Create a new instance of Room.

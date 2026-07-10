@@ -17,101 +17,149 @@ module Adventure
     SIZES = %w[Fine Diminutive Tiny Small Medium Large Huge Gargantuan Colossal].freeze
     TYPES = %w[Aberration Animal Beast Celestial Construct Dragon Elemental Fey Fiend Giant Humanoid Ooze Outsider Plant Undead Vermin].freeze
 
-    # Being's name.
+    # @!attribute [r]              name
+    #   @return   [String]         Being's name.
     attr_reader :name
-    # Being's source text, when applicable.
+    # @!attribute [r]              source
+    #   @return   [String]         Being's source text, when applicable.
     attr_reader :source
-    # Being's alignment.
+    # @!attribute [r]              align
+    #   @return   [String]         Being's alignment.
     attr_reader :align
-    # Being's Challenge Rating.
+    # @!attribute [r]              cr
+    #   @return   [Float]          Being's Challenge Rating.
     attr_reader :cr
-    # Being's Proficiency bonus.
+    # @!attribute [r]              proficiency
+    #   @return   [Integer]        Being's Proficiency bonus.
     attr_reader :proficiency
-    # Being's Hash of levels by, when applicable, class, or Integer of total level.
+    # @!attribute [r]              levels
+    #   @return   [Hash]           Being's Hash of levels by, when applicable, class, or Integer of total level.
     attr_reader :levels
-    # Being's size.
+    # @!attribute [r]              size
+    #   @return   [String]         Being's size.
     attr_reader :size
-    # Being's type.
+    # @!attribute [r]              type
+    #   @return   [String]         Being's type.
     attr_reader :type
-    # Being's subtype, if any.
+    # @!attribute [r]              subtype
+    #   @return   [String]         Being's subtype, if any.
     attr_reader :subtype
-    # Whether or not this is a swarm of beings.
+    # @!attribute [r]              swarm
+    #   @return   [Boolean]        Whether or not this is a swarm of beings.
     attr_reader :swarm
-    # Being's Hash of speeds, with five elements representing walk, burrow, climb, fly, and swim speeds -- the ones that don't apply set to `nil`.
+    # @!attribute [r]              speed
+    #   @return   [Hash]           Being's Hash of speeds, with five elements representing walk, burrow, climb, fly, and swim speeds -- the ones that don't apply set to `nil`.
     attr_reader :speed
-    # Being's Array of senses, empty by default.
+    # @!attribute [r]              senses
+    #   @return   [Array<String>]  Being's Array of senses, empty by default.
     attr_reader :senses
-    # Being's Array of known languages.
+    # @!attribute [r]              languages
+    #   @return   [Array<String>]  Being's Array of known languages.
     attr_reader :languages
-    # Being's Strength score.
+    # @!attribute [r]              str
+    #   @return   [Integer]        Being's Strength score.
     attr_reader :str
-    # Being's Dexterity score.
+    # @!attribute [r]              dex
+    #   @return   [Integer]        Being's Dexterity score.
     attr_reader :dex
-    # Being's Constitution score.
+    # @!attribute [r]              con
+    #   @return   [Integer]        Being's Constitution score.
     attr_reader :con
-    # Being's Intelligence score.
+    # @!attribute [r]              int
+    #   @return   [Integer]        Being's Intelligence score.
     attr_reader :int
-    # Being's Wisdom score.
+    # @!attribute [r]              wis
+    #   @return   [Integer]        Being's Wisdom score.
     attr_reader :wis
-    # Being's Charisma score.
+    # @!attribute [r]              cha
+    #   @return   [Integer]        Being's Charisma score.
     attr_reader :cha
-    # Being's Passive Perception score.
+    # @!attribute [r]              passive_perception
+    #   @return   [Integer]        Being's Passive Perception score.
     attr_reader :passive_perception
-    # Being's Armor Class.
+    # @!attribute [r]              ac
+    #   @return   [Integer]        Being's Armor Class.
     attr_reader :ac
-    # Being's AC description, if any.
+    # @!attribute [r]              ac_desc
+    #   @return   [String]         Being's AC description, if any.
     attr_reader :ac_desc
-    # Being's total/maximum Hit Points.
+    # @!attribute [r]              hp
+    #   @return   [Integer]        Being's total/maximum Hit Points.
     attr_reader :hp
-    # Being's current HP, initialized as the same as maximum HP.
+    # @!attribute [r]              current_hp
+    #   @return   [Integer]        Being's current HP, initialized as the same as maximum HP.
     attr_reader :current_hp
-    # Being's HP dice formula.
+    # @!attribute [r]              hp_formula
+    #   @return   [String]         Being's HP dice formula.
     attr_reader :hp_formula
-    # Being's Array of Damage Vulnerabilities, if any -- empty by default.
+    # @!attribute [r]              dmg_vulnerabilities
+    #   @return   [Array<String>]  Being's Array of Damage Vulnerabilities, if any -- empty by default.
     attr_reader :dmg_vulnerabilities
-    # Being's Array of Damage Resistances, if any -- empty by default.
+    # @!attribute [r]              dmg_resistances
+    #   @return   [Array<String>]  Being's Array of Damage Resistances, if any -- empty by default.
     attr_reader :dmg_resistances
-    # Being's Array of Damage Immunities, if any -- empty by default.
+    # @!attribute [r]              dmg_immunities
+    #   @return   [Array<String>]  Being's Array of Damage Immunities, if any -- empty by default.
     attr_reader :dmg_immunities
-    # Being's Array of Condition Immunities, if any -- empty by default.
+    # @!attribute [r]              condition_immunities
+    #   @return   [Array<String>]  Being's Array of Condition Immunities, if any -- empty by default.
     attr_reader :condition_immunities
-    # Being's Spellcasting block header -- `nil` if not applicable.
+    # @!attribute [r]              spell_header
+    #   @return   [String]         Being's Spellcasting block header -- `nil` if not applicable.
     attr_reader :spell_header
-    # Being's Spellcasting block footer -- `nil` if not applicable.
+    # @!attribute [r]              spell_footer
+    #   @return   [String]         Being's Spellcasting block footer -- `nil` if not applicable.
     attr_reader :spell_footer
-    # Being's Spellcasting array of spells -- empty by default.
+    # @!attribute [r]              spell_list
+    #   @return   [Array<Hash>]    Being's Spellcasting array of spells -- empty by default.
     attr_reader :spell_list
-    # Being's Array of Traits.
+    # @!attribute [r]              traits
+    #   @return   [Array<Hash>]    Being's Array of Traits.
     attr_reader :traits
-    # Being's Actions' header.
+    # @!attribute [r]              actions_header
+    #   @return   [String]         Being's Actions' header.
     attr_reader :actions_header
-    # Being's Array of Actions.
+    # @!attribute [r]              actions_list
+    #   @return   [Array]          Being's Array of Actions.
     attr_reader :actions_list
-    # Being's Bonus Actions' header.
+    # @!attribute [r]              bonus_actions_header
+    #   @return   [String]         Being's Bonus Actions' header.
     attr_reader :bonus_actions_header
-    # Being's Array of Bonus Actions.
+    # @!attribute [r]              bonus_actions_list
+    #   @return   [Array]          Being's Array of Bonus Actions.
     attr_reader :bonus_actions_list
-    # Being's Reactions' header.
+    # @!attribute [r]              reactions_header
+    #   @return   [String]         Being's Reactions' header.
     attr_reader :reactions_header
-    # Being's Array of Reactions.
+    # @!attribute [r]              reactions_list
+    #   @return   [Array]          Being's Array of Reactions.
     attr_reader :reactions_list
-    # Being's Legendary Actions' header.
+    # @!attribute [r]              legendary_actions_header
+    #   @return   [String]         Being's Legendary Actions' header.
     attr_reader :legendary_actions_header
-    # Being's number of Legendary Actions, as Integer.
+    # @!attribute [r]              legendary_actions_count
+    #   @return   [Integer]        Being's number of Legendary Actions, as Integer.
     attr_reader :legendary_actions_count
-    # Being's Array of Legendary Actions.
+    # @!attribute [r]              legendary_actions_list
+    #   @return   [Array]          Being's Array of Legendary Actions.
     attr_reader :legendary_actions_list
-    # Being's Mythic Actions' header.
+    # @!attribute [r]              mythic_actions_header
+    #   @return   [String]         Being's Mythic Actions' header.
     attr_reader :mythic_actions_header
-    # Being's Array of Mythic Actions.
+    # @!attribute [r]              mythic_actions_list
+    #   @return   [Array]          Being's Array of Mythic Actions.
     attr_reader :mythic_actions_list
-    # Being's list of {Item}s.
+    # @!attribute [r]              inventory
+    #   @return   [{Inventory}]    Being's list of {Item}s.
     attr_reader :inventory
-    # Being's {Purse}.
+    # @!attribute [r]              purse
+    #   @return   [{Purse}]        Being's {Purse}.
     attr_reader :purse
-    # Being's flavor description/informations.
+    # @!attribute [r]              description
+    #   @return   [String]         Being's flavor description/informations.
     attr_reader :description
-    # Being's Array of environments.
+    # @!attribute [r]              environment
+    #   @return   [Array]          Being's Array of environments.
     attr_reader :environment
 
     # Create a new instance of Being.

@@ -12,23 +12,32 @@ require_relative 'room'
 module Adventure
   # Represents the world where the game takes place.
   class World
-    # The adventure's title / name.
+    # @!attribute [r]                title
+    #   @return   [String]           The adventure's title / name.
     attr_reader :title
-    # The adventure's subtitle / flavor text.
+    # @!attribute [r]                subtitle
+    #   @return   [String]           The adventure's subtitle / flavor text.
     attr_reader :subtitle
-    # An Array of authors, in the format `Name <email> (url)`.
+    # @!attribute [r]                authors
+    #   @return   [Array<String>]    An Array of authors, in the format `Name <email> (url)`.
     attr_reader :authors
-    # The full name of the license the adventure is released under.
+    # @!attribute [r]                license
+    #   @return   [String]           The full name of the license the adventure is released under.
     attr_reader :license
-    # The year (or years) of development of the adventure.
+    # @!attribute [r]                year
+    #   @return   [String]           The year (or years) of development of the adventure.
     attr_reader :year
-    # A description of the adventure.
+    # @!attribute [r]                description
+    #   @return   [String]           A description of the adventure.
     attr_reader :description
-    # The adventure's player object.
+    # @!attribute [r]                player
+    #   @return   [{Player}]         The adventure's player object.
     attr_reader :player
-    # The index of the game's current Room, initially the starting Room.
+    # @!attribute [r]                current_room
+    #   @return   [Integer, Symbol]  The index of the game's current Room, initially the starting Room.
     attr_reader :current_room
-    # A Hash of variables to be used by the adventure --- currently unused, kept as placeholder.
+    # @!attribute [r]                global_vars
+    #   @return   [Hash]             A Hash of variables to be used by the adventure --- currently unused, kept as placeholder.
     attr_reader :global_vars
 
     # Create a new game instance - a new World.

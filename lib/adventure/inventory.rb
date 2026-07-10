@@ -28,9 +28,11 @@ module Adventure
     # Valid sizes.
     SIZES = %w[fine diminutive tiny small medium large huge gargantuan colossal].freeze
 
-    # This inventory's maximum carrying capacity, **in kilograms**.
+    # @!attribute [r]            carrying_capacity
+    #   @return   [Integer]      This inventory's maximum carrying capacity, **in kilograms**.
     attr_reader :carrying_capacity
-    # This inventory's maximum dragging/lifting weight, **in kilograms**.
+    # @!attribute [r]            drag_weight
+    #   @return   [Integer]      This inventory's maximum dragging/lifting weight, **in kilograms**.
     attr_reader :drag_weight
 
     # Create a new instance of Inventory.

@@ -3,30 +3,30 @@
 module Adventure
   # Represents an ingame item.
   class Item
-    # Item's type, either one of {Adventure::Item::Type}
-    # or a String.
+    # @!attribute [r]                type
+    #   @return   [Type, String]     Item's type, either one of {Adventure::Item::Type} or a String.
     attr_reader :type
-    # Item's type of damage.
+    # @!attribute [r]                dmg_type
+    #   @return   [DamageType]       Item's type of damage.
     attr_reader :dmg_type
-    # Item's rarity, if applicable. Either one of
-    # {Adventure::Item::Rarity}, a String, or
-    # `nil` when unset.
+    # @!attribute [r]                rarity
+    #   @return   [Rarity, String]   Item's rarity, if applicable. Either one of {Adventure::Item::Rarity}, a String, or `nil` when unset.
     attr_reader :rarity
-    # Whether the item requires attunement or not. If
-    # a string, it will be prepended by *"Requires attunement "*.
+    # @!attribute [r]                attunement
+    #   @return   [Boolean, String]  Whether the item requires attunement or not. If a string, it will be prepended by *"Requires attunement "*.
     attr_reader :attunement
-    # Whether the item is identified (known) or not.
+    # @!attribute [r]                known
+    #   @return   [Boolean]          Whether the item is identified (known) or not.
     attr_reader :known
-    # The value of the item, a Float representing
-    # such value in gold pieces, or `nil` when unset.
-    attr_accessor :value
-    # The weight of the item, a Float in **kilograms**,
-    # or `nil` when unset.
-    attr_accessor :weight
-    # The source of the item, a String, with source
-    # name and page when applicable, or `nil` when
-    # unset.
-    attr_accessor :source
+    # @!attribute [rw]               value
+    #   @return   [Float]            The value of the item, a Float representing such value in gold pieces, or `nil` when unset.
+    attr_reader :value
+    # @!attribute [rw]               weight
+    #   @return   [Float]            The weight of the item, a Float in **kilograms**, or `nil` when unset.
+    attr_reader :weight
+    # @!attribute [rw]               source
+    #   @return   [String]           The source of the item, a String, with source name and page when applicable, or `nil` when unset.
+    attr_reader :source
 
     # Types of items.
     module Type
