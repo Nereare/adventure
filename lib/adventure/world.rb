@@ -10,6 +10,7 @@ require_relative 'npc'
 require_relative 'player'
 require_relative 'purse'
 require_relative 'room'
+require_relative 'store'
 
 module Adventure
   # Represents the world where the game takes place.

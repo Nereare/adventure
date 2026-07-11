@@ -11,6 +11,7 @@ require_relative 'adventure/meta'
 require_relative 'adventure/npc'
 require_relative 'adventure/player'
 require_relative 'adventure/purse'
+require_relative 'adventure/store'
 require_relative 'adventure/world'
 
 # Gem's main module.
