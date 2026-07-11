@@ -3,6 +3,7 @@
 require 'psych'
 
 require_relative 'being'
+require_relative 'challenge'
 require_relative 'inventory'
 require_relative 'item'
 require_relative 'player'

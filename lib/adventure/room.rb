@@ -8,21 +8,25 @@ module Adventure
     # List of valid directions.
     DIRECTIONS = %i[north northeast east southeast south southwest west northwest up down].freeze
 
-    # @!attribute [r]            exits
-    #   @return   [Hash]         Room's exit.
+    # @!attribute [r]                   exits
+    #   @return   [Hash]                Room's exit.
     attr_reader :exits
-    # @!attribute [r]            inventory
-    #   @return   [{Inventory}]  Room's {Inventory}.
+    # @!attribute [r]                   inventory
+    #   @return   [{Inventory}]         Room's {Inventory}.
     attr_reader :inventory
+    # @!attribute [r]                   challenges
+    #   @return   [Array<{Challenge}>]  Room's list of {Challenge}s.
+    attr_reader :challenges
 
     # Create a new instance of Room.
     #
     # @param    name          [String]   The room's name.
     # @param    description   [String]   The room's long description.
     # @param    opts          [Hash]     A list of optional parameters.
-    # @option   opts          [Boolean]     lit                 Whether or not this room is alight, `true` by default.
-    # @option   opts          [Hash]        exits               A Hash of exits (the index to other {Room}s), keyed by direction's Symbol.
-    # @option   opts          [Inventory]   contents            The room's {Item} contents, empty {Inventory} by default.
+    # @option   opts          [Boolean]             lit         Whether or not this room is alight, `true` by default.
+    # @option   opts          [Hash]                exits       A Hash of exits (the index to other {Room}s), keyed by direction's Symbol.
+    # @option   opts          [Inventory]           contents    The room's {Item} contents, empty {Inventory} by default.
+    # @option   opts          [Array<{Challenge}>]  challenges  The room's challenges, if any.
     # @see DIRECTIONS
     def initialize(name, description, **opts)
       # Obligatory parameters
@@ -32,6 +36,7 @@ module Adventure
       @lit         = opts.key?(:lit) ? (opts[:lit] == true) : true
       @exits       = opts.key?(:exits) ? opts[:exits].to_h : {}
       @inventory   = opts.key?(:inventory) ? opts[:inventory] : Inventory.new
+      @challenges  = opts.key?(:challenges) ? opts[:challenges] : []
       # TODO: implement battles and/or monsters.
     end
 

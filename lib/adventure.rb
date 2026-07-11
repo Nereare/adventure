@@ -4,6 +4,7 @@ require 'tty-exit'
 require 'tty-option'
 
 require_relative 'adventure/being'
+require_relative 'adventure/challenge'
 require_relative 'adventure/inventory'
 require_relative 'adventure/item'
 require_relative 'adventure/meta'

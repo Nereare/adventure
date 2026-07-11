@@ -61,6 +61,12 @@ RSpec.describe Adventure::Room do
       expect(@room.inventory).to be_an(Adventure::Inventory)
     end
 
+    it 'returns the room\'s challenges' do
+      expect(@room.challenges).not_to be_nil
+      expect(@room.challenges).to be_an(Array)
+      expect(@room.challenges).to eq([])
+    end
+
     it 'can have its contents fetched' do
       expect { @room.inventory.remove('1') }.to change { @room.inventory.to_i }.from(2).to(1)
     end
