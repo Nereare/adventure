@@ -30,6 +30,7 @@ module Adventure
     # @param    name       [String]                 The player's name.
     # @param    classes    [Array<String>]          The player's list of classes, as an Array of Strings.
     # @param    species    [String]                 The player's species.
+    # @param    gender     [String]                 The player's gender.
     # @param    opts       [Hash]                   A list of optional parameters.
     # @option   opts       [Integer]    :level      The player's total level. Defaults to `1`.
     # @option   opts       [Purse]      :purse      The player's {Purse}. Will be set to an empty {Purse} if unset.
