@@ -4,11 +4,11 @@ RSpec.describe Adventure::Player do
   describe 'Player creation' do
     it 'instantializes a player' do
       expect(described_class.new(
-        'Player Name',
-        ['wizard'],
-        'elf',
-        'non-binary'
-      )).to be_instance_of(described_class)
+               'Player Name',
+               ['wizard'],
+               'elf',
+               'non-binary'
+             )).to be_instance_of(described_class)
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe Adventure::Player do
       expect(@player.name).to be_a(String)
     end
 
-    it 'returns the player\'s total level' do
+    it 'returns the player\'s total level as its Integer equivalent' do
       expect(@player.level).not_to be_nil
       expect(@player.level).to be_an(Integer)
     end
