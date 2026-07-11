@@ -17,6 +17,9 @@ module Adventure
     # @!attribute [r]                   challenges
     #   @return   [Array<{Challenge}>]  Room's list of {Challenge}s.
     attr_reader :challenges
+    # @!attribute [r]                   npcs
+    #   @return   [Array<{NPC}>]        Room's list of {NPC}s.
+    attr_reader :npcs
 
     # Create a new instance of Room.
     #
@@ -27,6 +30,7 @@ module Adventure
     # @option   opts          [Hash]                exits       A Hash of exits (the index to other {Room}s), keyed by direction's Symbol.
     # @option   opts          [Inventory]           contents    The room's {Item} contents, empty {Inventory} by default.
     # @option   opts          [Array<{Challenge}>]  challenges  The room's challenges, if any.
+    # @option   opts          [Array<{NPC}>]        npcs        The room's NPCs, if any.
     # @see DIRECTIONS
     def initialize(name, description, **opts)
       # Obligatory parameters
@@ -37,6 +41,7 @@ module Adventure
       @exits       = opts.key?(:exits) ? opts[:exits].to_h : {}
       @inventory   = opts.key?(:inventory) ? opts[:inventory] : Inventory.new
       @challenges  = opts.key?(:challenges) ? opts[:challenges] : []
+      @npcs        = opts.key?(:npcs) ? opts[:npcs] : []
       # TODO: implement battles and/or monsters.
     end
 
